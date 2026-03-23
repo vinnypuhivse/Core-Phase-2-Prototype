@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsela — Your Courses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-beige: #faf9f5;
+      --neutral-700: #1D1D1D;
+      --neutral-500: #5B5A61;
+      --neutral-400: #77767A;
+      --neutral-200: #A8AAB0;
+      --neutral-100: #E1E3E5;
+      --neutral-50: #F0F1F2;
+      --core-500: #0A6EFA;
+      --core-50: #CCE1FF;
+      --purple-500: #8B1EA4;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-beige);
+      color: var(--neutral-700);
+      min-width: 768px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid #E1E3E5;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 32px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: color 0.15s;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #1D1D1D;
+    }
+
+    .nav-link.active {
+      color: #1D1D1D;
+      font-weight: 600;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: #E1E3E5;
+      margin: 0 8px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0A6EFA;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* ─── PAGE BODY ─── */
+    .page-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .page-header {
+      padding: 32px 0 0;
+    }
+
+    .page-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: #1D1D1D;
+      line-height: 1.25;
+    }
+
+    /* ─── TABS ─── */
+    .tabs-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 0;
+      padding: 0;
+      margin-top: 16px;
+      border-bottom: 1px solid #E1E3E5;
+    }
+
+    .tab {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      padding: 10px 16px 12px;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      background: none;
+      transition: color 0.15s;
+    }
+
+    .tab:first-child {
+      padding-left: 0;
+    }
+
+    .tab:hover {
+      color: #1D1D1D;
+    }
+
+    .tab.active {
+      color: #0A6EFA;
+      font-weight: 700;
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #0A6EFA;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .tab:first-child.active::after {
+      left: 0;
+    }
+
+    /* ─── CONTENT AREA ─── */
+    .content-area {
+      padding: 0 0 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ─── COURSE SECTION ─── */
+    .course-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid #E1E3E5;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .course-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #1D1D1D;
+      line-height: 1.25;
+    }
+
+    .section-description {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5B5A61;
+      line-height: 1.6;
+    }
+
+    .section-description a {
+      color: #0A6EFA;
+      text-decoration: none;
+      font-weight: 400;
+    }
+
+    .section-description a:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── UNIT CARDS GRID ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .unit-card {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid #E1E3E5;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+    }
+
+    .unit-card:hover {
+      border-color: #A8AAB0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      background: #D1D5DB;
+    }
+
+    .card-body {
+      padding: 12px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1D1D1D;
+      line-height: 1.43;
+    }
+
+    .card-meta {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5B5A61;
+      line-height: 1.5;
+    }
+
+    .card-meta .bold-num {
+      font-weight: 700;
+      color: #5B5A61;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      min-height: 20px;
+    }
+
+    .progress-bar-track {
+      flex: 1;
+      height: 4px;
+      background: #E1E3E5;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #8B1EA4;
+      border-radius: 100px;
+      transition: width 0.3s;
+    }
+
+    .progress-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #8B1EA4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .progress-check svg {
+      width: 11px;
+      height: 11px;
+      stroke: white;
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    /* ─── CARD ACTION BUTTON ─── */
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      margin-top: 4px;
+    }
+
+    .card-action.continue {
+      background: #0A6EFA;
+      color: #FFFFFF;
+      border: 1.5px solid #0A6EFA;
+    }
+
+    .card-action.continue:hover {
+      background: #0057d4;
+      border-color: #0057d4;
+    }
+
+    .card-action.start {
+      background: transparent;
+      color: #0A6EFA;
+      border: 1.5px solid #0A6EFA;
+    }
+
+    .card-action.start:hover {
+      background: #CCE1FF;
+    }
+
+    /* ─── SECTION CTA BUTTON ─── */
+    .section-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0A6EFA;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+      width: fit-content;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    .section-cta:hover {
+      background: #0057d4;
+    }
+
+    .section-cta svg {
+      width: 16px;
+      height: 16px;
+      stroke: #ffffff;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* ─── COURSE TABS ─── */
+    .course-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #E1E3E5;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    .course-tab {
+      background: none;
+      border: none;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      cursor: pointer;
+      padding: 10px 16px 12px;
+      position: relative;
+      margin-bottom: -1px;
+      transition: color 0.15s;
+    }
+    .course-tab:first-child {
+      padding-left: 0;
+    }
+    .course-tab:hover {
+      color: #1D1D1D;
+    }
+    .course-tab.active {
+      color: #0A6EFA;
+      font-weight: 700;
+    }
+    .course-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #0A6EFA;
+      border-radius: 2px 2px 0 0;
+    }
+    .course-tab:first-child.active::after {
+      left: 0;
+    }
+
+    /* ─── UNIT CARD LINK ─── */
+    a.unit-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    a.unit-card-link .unit-card {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header>
+  <div class="logo-group">
+    <a href="index.html"><img src="../Reference images/Logo.png" alt="Newsela Threads &amp; Themes" style="height: 32px; display: block;" /></a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-link active">Courses</a>
+    <a href="assignments.html" class="nav-link">Assignments</a>
+    <a href="#" class="nav-link">Reporting</a>
+    <div class="nav-divider"></div>
+    <div style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <div class="avatar">GG</div>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5B5A61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════ PAGE BODY ═══════════════════════════════════ -->
+<div class="page-body">
+
+  <div class="page-header">
+    <h1 class="page-title">Your Courses</h1>
+  </div>
+
+
+  <!-- Course Tabs -->
+  <div class="course-tabs">
+    <button class="course-tab active" data-tab="ela">ELA Courses</button>
+    <button class="course-tab" data-tab="eld">ELD Courses</button>
+  </div>
+
+  <!-- Content -->
+  <div class="content-area">
+
+  <!-- ELA Panel -->
+  <div id="panel-ela" class="course-panel">
+
+    <!-- ── SECTION 1: ELA Core 8th Grade ── -->
+    <div class="course-section">
+      <div class="section-header">
+        <div class="section-title">ELA Core 6th Grade</div>
+        <div class="section-description">
+          The Grade 6 Core ELA course is the first stage in the middle school progression (Self → Belonging → Systems), preparing students to explore themes of identity, community, and personal narrative through diverse literature and nonfiction texts. The Grade 6 Core ELA course is the first stage in the middle school pr… <a href="#">View full description</a>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit1/280/160" alt="Unit 1" />
+          <div class="card-body">
+            <div class="card-title">Unit 1: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit2/280/160" alt="Unit 2" />
+          <div class="card-body">
+            <div class="card-title">Unit 2: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit3/280/160" alt="Unit 3" />
+          <div class="card-body">
+            <div class="card-title">Unit 3: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">25</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit4/280/160" alt="Unit 4" />
+          <div class="card-body">
+            <div class="card-title">Unit 4: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">0</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+      </div><!-- /cards-grid -->
+
+      <a href="course.html" class="section-cta">
+        Go to ELA 6th Grade Course
+        <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div><!-- /course-section -->
+
+    <!-- ── SECTION 2: ELA Core 7th Grade ── -->
+    <div class="course-section">
+      <div class="section-header">
+        <div class="section-title">ELA Core 7th Grade</div>
+        <div class="section-description">
+          The Grade 7 Core ELA course is the second stage in the middle school progression (Self → Belonging → Systems), guiding students to explore themes of community, identity, and belonging through diverse literature and nonfiction texts. The Grade 7 Core ELA course is the second stage in the middle school pr… <a href="#">View full description</a>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit5/280/160" alt="Unit 1" />
+          <div class="card-body">
+            <div class="card-title">Unit 1: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit6/280/160" alt="Unit 2" />
+          <div class="card-body">
+            <div class="card-title">Unit 2: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit7/280/160" alt="Unit 3" />
+          <div class="card-body">
+            <div class="card-title">Unit 3: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">25</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/unit8/280/160" alt="Unit 4" />
+          <div class="card-body">
+            <div class="card-title">Unit 4: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">0</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+      </div><!-- /cards-grid -->
+
+      <a href="#" class="section-cta">
+        Go to ELA 7th Grade Course
+        <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div><!-- /course-section -->
+
+  </div><!-- /panel-ela -->
+
+  <!-- ELD Panel -->
+  <div id="panel-eld" class="course-panel" style="display:none">
+
+    <!-- ── SECTION 1: ELD Core 8th Grade ── -->
+    <div class="course-section">
+      <div class="section-header">
+        <h2 class="section-title">ELD Core 8th Grade</h2>
+        <p class="section-desc">The ELD Core 8th Grade course supports English Language Development through thematic literature and language-focused instruction, helping students build academic language skills alongside grade-level content.</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld1/280/160" alt="ELD Unit 1" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 1: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld2/280/160" alt="ELD Unit 2" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 2: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld3/280/160" alt="ELD Unit 3" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 3: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">25</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld4/280/160" alt="ELD Unit 4" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 4: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">0</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+      </div><!-- /cards-grid -->
+
+      <a href="course.html" class="section-cta">
+        Go to ELD 8th Grade Course
+        <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div><!-- /course-section -->
+
+    <!-- ── SECTION 2: ELD Core 7th Grade ── -->
+    <div class="course-section">
+      <div class="section-header">
+        <h2 class="section-title">ELD Core 7th Grade</h2>
+        <p class="section-desc">The ELD Core 7th Grade course focuses on language acquisition through the lens of identity and belonging, guiding students through thematic texts that build vocabulary, grammar, and academic communication skills.</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld5/280/160" alt="ELD Unit 1" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 1: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld6/280/160" alt="ELD Unit 2" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 2: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">50</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 100%;"></div>
+              </div>
+              <div class="progress-check">
+                <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld7/280/160" alt="ELD Unit 3" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 3: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">25</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="unit.html" class="unit-card-link">
+        <div class="unit-card">
+          <img class="card-image" src="https://picsum.photos/seed/eld8/280/160" alt="ELD Unit 4" />
+          <div class="card-body">
+            <div class="card-title">ELD Unit 4: Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</div>
+            <div class="card-meta"><span class="bold-num">0</span> of <span class="bold-num">50</span> completed lessons</div>
+            <div class="progress-wrap">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </a>
+
+      </div><!-- /cards-grid -->
+
+      <a href="#" class="section-cta">
+        Go to ELD 7th Grade Course
+        <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div><!-- /course-section -->
+
+  </div><!-- /panel-eld -->
+
+  </div><!-- /content-area -->
+</div><!-- /page-body -->
+
+<script>
+  // Course tab switching
+  document.querySelectorAll('.course-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.course-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.course-panel').forEach(p => p.style.display = 'none');
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).style.display = 'block';
+    });
+  });
+</script>
+
+</body>
+</html>

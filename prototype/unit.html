@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit 3: Belonging &amp; Identity — Newsela Threads &amp; Themes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-beige: #faf9f5;
+      --white: #ffffff;
+      --core-500: #0A6EFA;
+      --core-50: #CCE1FF;
+      --core-700: #082C88;
+      --neutral-700: #1D1D1D;
+      --neutral-500: #5B5A61;
+      --neutral-100: #E1E3E5;
+      --neutral-50: #F0F1F2;
+      --purple-500: #8B1EA4;
+    }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-beige);
+      color: var(--neutral-700);
+      min-width: 960px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid #E1E3E5;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: color 0.15s;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #1D1D1D;
+    }
+
+    .nav-link.active {
+      color: #0A6EFA;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #0A6EFA;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: #E1E3E5;
+      margin: 0 8px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0A6EFA;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── PAGE LAYOUT ─── */
+    .page-layout {
+      display: flex;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 284px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--neutral-100);
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      padding: 8px 8px 20px;
+    }
+
+    .sidebar-thumb {
+      margin-bottom: 8px;
+    }
+
+    .sidebar-thumb img {
+      width: 268px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .sidebar-course-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1D1D1D;
+      margin-bottom: 4px;
+      padding: 4px 8px 8px;
+    }
+
+    /* ── Sidebar nav tree ── */
+    .nav-tree { list-style: none; }
+
+    .nav-unit { margin-bottom: 0; }
+
+    .nav-unit-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 32px;
+      padding: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      transition: background 0.12s;
+      user-select: none;
+    }
+    .nav-unit-header:hover { background: var(--neutral-50); }
+    .nav-unit-header.active-unit { color: var(--core-500); }
+
+    .nav-unit-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-unit-chevron svg { transition: transform 0.2s ease; }
+    .nav-unit-header.active-unit .nav-unit-chevron svg { transform: rotate(90deg); }
+
+    .nav-children { list-style: none; }
+    .nav-range-group { list-style: none; }
+    .nav-range-children { list-style: none; }
+
+    .nav-range {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 4px 4px 4px 28px;
+      gap: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      border-radius: 6px;
+      transition: background 0.12s;
+      user-select: none;
+    }
+    .nav-range:hover { background: var(--neutral-50); }
+
+    .nav-range-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-range-chevron svg { transition: transform 0.2s ease; }
+    .nav-range.range-open .nav-range-chevron svg { transform: rotate(90deg); }
+
+    .nav-lesson {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 4px 4px 4px 52px;
+      position: relative;
+      font-size: 14px;
+      color: var(--neutral-600);
+      cursor: pointer;
+      border-radius: 6px;
+      border-left: 3px solid transparent;
+      transition: background 0.12s;
+      font-weight: 400;
+    }
+    .nav-lesson:hover { background: var(--neutral-50); }
+    .nav-lesson.active {
+      background: var(--core-50);
+      color: var(--core-500);
+      font-weight: 600;
+      border-left: 3px solid var(--core-500);
+      padding-left: 49px;
+      border-radius: 6px;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 40px 64px;
+      max-width: 1156px;
+    }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--neutral-500);
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb a {
+      color: var(--neutral-500);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--core-500);
+      text-decoration: underline;
+    }
+
+    .breadcrumb-sep {
+      color: var(--neutral-500);
+    }
+
+    .breadcrumb-current {
+      color: var(--neutral-700);
+      font-weight: 500;
+    }
+
+    /* ─── H1 ─── */
+    .unit-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: #1D1D1D;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    /* ─── STANDARDS ROW ─── */
+    .standards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .standards-col-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--neutral-500);
+      margin-bottom: 8px;
+    }
+
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .chip {
+      background: var(--core-50);
+      color: var(--core-700);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .chip-link {
+      color: var(--core-500);
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .chip-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── TAB NAV ─── */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--neutral-100);
+      margin-bottom: 32px;
+    }
+
+    .tab-btn {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      padding: 10px 20px 12px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:first-child {
+      padding-left: 0;
+    }
+
+    .tab-btn:hover {
+      color: var(--neutral-700);
+    }
+
+    .tab-btn.active {
+      color: var(--core-500);
+      font-weight: 600;
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #0A6EFA;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .tab-btn:first-child.active::after {
+      left: 0;
+    }
+
+    /* ─── UNIT TOP SPLIT (50/50) ─── */
+    .unit-top-split {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      min-height: 280px;
+    }
+    .unit-top-left {
+      flex: 0 0 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .unit-badges-row {
+      display: flex;
+      gap: 16px;
+      flex: 0 0 auto;
+    }
+    .unit-badge-card {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid #E1E3E5;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .badge-icon { font-size: 24px; }
+    .badge-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5B5A61; }
+    .badge-value { font-size: 18px; font-weight: 700; color: #1D1D1D; }
+    .performance-task-card {
+      flex: 1;
+      background: #8B1EA4;
+      color: white;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+    .perf-task-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+    .perf-task-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .unit-top-right {
+      flex: 0 0 50%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .unit-top-right img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-heading {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1D1D1D;
+      margin-bottom: 16px;
+    }
+
+    /* ─── PACING TABLE ─── */
+    .pacing-section {
+      margin-bottom: 32px;
+    }
+
+    .pacing-table-wrap {
+      border: 1px solid var(--neutral-100);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .pacing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .pacing-table th {
+      background: var(--neutral-50);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--neutral-500);
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .pacing-table td {
+      padding: 12px 16px;
+      color: var(--neutral-700);
+      border-bottom: 1px solid var(--neutral-100);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .pacing-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pacing-table tbody tr:hover {
+      background: var(--neutral-50);
+    }
+
+    .pacing-footer {
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    /* ─── UNIT CONTEXT ─── */
+    .unit-context-section {
+      margin-bottom: 32px;
+    }
+
+    .knowledge-box {
+      background: var(--neutral-50);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .knowledge-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1D1D1D;
+      margin-bottom: 8px;
+    }
+
+    .knowledge-box p {
+      font-size: 14px;
+      color: var(--neutral-500);
+      line-height: 1.6;
+    }
+
+    .context-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .context-card {
+      background: white;
+      border: 1px solid #E1E3E5;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .context-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1D1D1D;
+      margin-bottom: 12px;
+    }
+
+    .context-card ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .context-card ul li {
+      font-size: 13px;
+      color: var(--neutral-500);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .context-card ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--neutral-500);
+    }
+
+    /* ─── UNIT TEXTS ─── */
+    .unit-texts-section {
+      margin-bottom: 32px;
+    }
+
+    .sub-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--neutral-100);
+      margin-bottom: 20px;
+    }
+
+    .sub-tab-btn {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      padding: 6px 16px 10px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.15s;
+    }
+
+    .sub-tab-btn:first-child {
+      padding-left: 0;
+    }
+
+    .sub-tab-btn:hover {
+      color: var(--neutral-700);
+    }
+
+    .sub-tab-btn.active {
+      color: var(--core-500);
+      font-weight: 600;
+    }
+
+    .sub-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--core-500);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .sub-tab-btn:first-child.active::after {
+      left: 0;
+    }
+
+    .texts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ─── UNIT TEXT CARDS (new structure: copy left, image right) ─── */
+    .unit-text-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1px solid #E1E3E5;
+      border-radius: 8px;
+      padding: 16px;
+      background: white;
+    }
+    .text-card-copy { flex: 1; }
+    .text-type-label-purple {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #8B1EA4;
+      margin-bottom: 6px;
+    }
+    .text-title-serif {
+      font-family: 'Noto Serif', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1D1D1D;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .text-card-image { flex-shrink: 0; }
+    .text-read-link { font-size: 13px; color: #0A6EFA; text-decoration: none; font-weight: 600; }
+    .text-read-link:hover { text-decoration: underline; }
+
+    /* legacy text-card (kept for other tabs if any) */
+    .text-card {
+      border: 1px solid var(--neutral-100);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .text-card-cover {
+      flex-shrink: 0;
+    }
+
+    .text-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .text-type-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--neutral-500);
+    }
+
+    .text-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1D1D1D;
+      line-height: 1.4;
+    }
+
+    .text-author {
+      font-size: 13px;
+      color: var(--neutral-500);
+      margin-bottom: 8px;
+    }
+
+    .text-link {
+      font-size: 13px;
+      color: var(--core-500);
+      text-decoration: none;
+      margin-top: auto;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── ASSESSMENTS TABLE ─── */
+    .assessments-table-wrap {
+      border: 1px solid var(--neutral-100);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .assessments-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .assessments-table th {
+      background: var(--neutral-50);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--neutral-500);
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .assessments-table td {
+      padding: 14px 16px;
+      color: var(--neutral-700);
+      border-bottom: 1px solid var(--neutral-100);
+      vertical-align: middle;
+    }
+
+    .assessments-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .assessments-table tbody tr:hover {
+      background: var(--neutral-50);
+    }
+
+    .status-badge {
+      display: inline-block;
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-ongoing {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .status-upcoming {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .status-notstarted {
+      background: var(--neutral-50);
+      color: var(--neutral-500);
+    }
+
+    /* ─── ADDITIONAL RESOURCES ─── */
+    .resources-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .resources-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1D1D1D;
+    }
+
+    .resources-download-link {
+      color: var(--core-500);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .resources-download-link:hover {
+      text-decoration: underline;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .resource-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 1px solid #E1E3E5;
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .resource-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .resource-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1D1D1D;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .resource-size {
+      font-size: 12px;
+      color: var(--neutral-500);
+    }
+
+    .resource-preview-link {
+      margin-left: auto;
+      flex-shrink: 0;
+      color: var(--core-500);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .resource-preview-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── GENERIC LINK ─── */
+    a.blue-link {
+      color: var(--core-500);
+      text-decoration: none;
+    }
+
+    a.blue-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── LESSONS TAB ─── */
+    .lessons-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .lessons-header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .lessons-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1D1D1D;
+    }
+
+    .lessons-total {
+      font-size: 14px;
+      color: #5B5A61;
+    }
+
+    .expand-all-btn {
+      border: 1px solid #E1E3E5;
+      background: white;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      color: #1D1D1D;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .expand-all-btn:hover {
+      background: var(--neutral-50);
+    }
+
+    .lesson-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .lesson-row-unit {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+    }
+
+    .lesson-row-unit:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .lesson-row-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lesson-num-badge {
+      font-size: 14px;
+      font-weight: 500;
+      color: #77767A;
+      min-width: 28px;
+      flex-shrink: 0;
+    }
+
+    .lesson-row-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1D1D1D;
+      flex: 1;
+    }
+
+    .lesson-row-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .lesson-pill {
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+    }
+
+    .pill-reading            { background: #FFDCF5; color: #7D0145; }
+    .pill-writing            { background: #CCE1FF; color: #082C88; }
+    .pill-flexday            { background: #F0F1F2; color: #5B5A61; }
+    .pill-spark              { background: #B9F9EA; color: #085E4A; }
+    .pill-presentation       { background: #FFD1B4; color: #923800; }
+    .pill-academic-discussion{ background: #F5DEC8; color: #7C4A1E; }
+
+    .lesson-time-text {
+      font-size: 14px;
+      color: #77767A;
+      flex-shrink: 0;
+    }
+
+    .lesson-chevron {
+      color: #77767A;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .lesson-row-unit.open .lesson-chevron svg {
+      transform: rotate(90deg);
+    }
+
+    /* Expanded detail panel */
+    .lesson-detail-panel {
+      display: none;
+      padding: 20px 0 4px 44px;
+    }
+
+    .lesson-row-unit.open .lesson-detail-panel {
+      display: block;
+    }
+
+    .lesson-detail-section {
+      margin-bottom: 20px;
+    }
+
+    .lesson-detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--neutral-500);
+      margin-bottom: 8px;
+    }
+
+    .lesson-standards-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .lesson-standards-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lesson-standards-group-label {
+      font-size: 12px;
+      color: #5B5A61;
+      font-weight: 500;
+      min-width: 160px;
+    }
+
+    .lesson-texts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .lesson-obj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .lesson-obj-card {
+      border: 1px solid #E1E3E5;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: white;
+    }
+
+    .lesson-obj-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #EBF3FF;
+      color: #0A6EFA;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lesson-obj-icon {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .lesson-obj-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #5B5A61;
+    }
+
+    .lesson-obj-text {
+      font-size: 13px;
+      color: #1D1D1D;
+      line-height: 1.5;
+    }
+
+    .go-to-lesson-btn {
+      display: inline-block;
+      background: #0A6EFA;
+      color: white;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 14px;
+      text-decoration: none;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .go-to-lesson-btn:hover {
+      background: #0858d4;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header>
+  <div class="logo-group">
+    <a href="index.html"><img src="../Reference images/Logo.png" alt="Newsela Threads &amp; Themes" style="height:32px;display:block;" /></a>
+  </div>
+  <nav>
+    <a href="index.html" class="nav-link active">Courses</a>
+    <a href="assignments.html" class="nav-link">Assignments</a>
+    <a href="#" class="nav-link">Reporting</a>
+    <div class="nav-divider"></div>
+    <div style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <div class="avatar">GG</div>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5B5A61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════ PAGE LAYOUT ═══════════════════════════════════ -->
+<div class="page-layout">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="sidebar-thumb">
+      <img src="https://picsum.photos/seed/unit3/268/80" alt="Course thumbnail" />
+    </div>
+    <div class="sidebar-course-label">ELA Core 8th Grade</div>
+
+    <ul class="nav-tree">
+      <!-- Unit 1 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 1</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 3</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 4</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 5</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 2 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 2</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 3 expanded (current) -->
+      <li class="nav-unit">
+        <div class="nav-unit-header active-unit" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 3</span>
+        </div>
+        <ul class="nav-children">
+          <li class="nav-range-group">
+            <div class="nav-range range-open" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 3</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 4</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 5</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 6</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 7</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 8</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 9</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 10</span></li>
+            </ul>
+          </li>
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 11–20</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 11</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 12</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 13</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 14</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 15</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 16</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 17</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 18</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 19</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 20</span></li>
+            </ul>
+          </li>
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 21–30</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 21</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 22</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 23</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 24</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 25</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 26</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 27</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 28</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 29</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 30</span></li>
+            </ul>
+          </li>
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 31–40</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 31</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 32</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 33</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 34</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 35</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 36</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 37</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 38</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 39</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 40</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 4 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 4</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ─── MAIN CONTENT ─── -->
+  <main class="main-content">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="course.html">ELA Core 8th Grade</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Unit 3</span>
+    </div>
+
+    <!-- H1 -->
+    <h1 class="unit-title">Unit 3: Belonging &amp; Identity Finding Our Way In Friendships And Social Divides</h1>
+
+    <!-- Standards Row -->
+    <div class="standards-row">
+      <div>
+        <div class="standards-col-label">California CCSS</div>
+        <div class="chips-row">
+          <span class="chip">RL.6.1</span>
+          <span class="chip">RL.6.5</span>
+          <span class="chip">S.L.6.1.a</span>
+          <span class="chip">RL.4.1</span>
+          <span class="chip">RL.6.5</span>
+          <span class="chip">RL.5.a</span>
+          <span class="chip">RI.4.2</span>
+          <a href="#" class="chip-link">+ View all</a>
+        </div>
+      </div>
+      <div>
+        <div class="standards-col-label">ELD Standards</div>
+        <div class="chips-row">
+          <span class="chip">RL.6.1</span>
+          <span class="chip">RL.6.5</span>
+          <span class="chip">S.L.6.1.a</span>
+          <span class="chip">RL.4.1</span>
+          <span class="chip">RL.6.5</span>
+          <span class="chip">RL.5.a</span>
+          <span class="chip">RI.4.2</span>
+          <a href="#" class="chip-link">+ View all</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Nav -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="overview">Overview</button>
+      <button class="tab-btn" data-tab="lessons">Lessons</button>
+      <button class="tab-btn" data-tab="assessments">Assessments</button>
+      <button class="tab-btn" data-tab="resources">Additional Resources</button>
+    </div>
+
+
+    <!-- ═══ TAB PANEL: Overview ═══ -->
+    <div id="tab-overview" class="tab-panel">
+
+      <!-- Unit Top Split: badges + performance task | unit image -->
+      <div class="unit-top-split">
+        <!-- LEFT: badges + performance task -->
+        <div class="unit-top-left">
+          <div class="unit-badges-row">
+            <div class="unit-badge-card">
+              <div class="badge-icon">🧵</div>
+              <div>
+                <div class="badge-label">UNIT TYPE</div>
+                <div class="badge-value">Core</div>
+              </div>
+            </div>
+            <div class="unit-badge-card">
+              <div class="badge-icon">📅</div>
+              <div>
+                <div class="badge-label">SUGGESTED PACING</div>
+                <div class="badge-value">6 Weeks</div>
+              </div>
+            </div>
+          </div>
+          <div class="performance-task-card">
+            <div class="perf-task-label">PERFORMANCE TASK</div>
+            <div class="perf-task-title">Argumentative Essay: The Role Of Social Class In American Identity</div>
+          </div>
+        </div>
+        <!-- RIGHT: unit image -->
+        <div class="unit-top-right">
+          <img src="https://picsum.photos/seed/unitillustration/600/400" alt="Unit illustration" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" />
+        </div>
+      </div>
+
+      <!-- Suggested Pacing -->
+      <div class="pacing-section">
+        <div class="section-heading">Suggested Pacing</div>
+        <div class="pacing-table-wrap">
+          <table class="pacing-table">
+            <thead>
+              <tr>
+                <th>Unit Arc</th>
+                <th>Instructional Time</th>
+                <th>Essential Question</th>
+                <th>Assessments &amp; Flex Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Spark / Lessons 1-5</td>
+                <td>6 Lessons / 90 min each</td>
+                <td>Entry Point: What defines 'us' versus 'them'?</td>
+                <td>Lesson Close Assessment (Lesson 6)</td>
+              </tr>
+              <tr>
+                <td>Investigation 1 / Lessons 6-12</td>
+                <td>7 Lessons / 90 min each</td>
+                <td>Conflict &amp; Code</td>
+                <td>Mid-Unit Checkpoint (Lesson 10)</td>
+              </tr>
+              <tr>
+                <td>End of Arc 1 / Lessons 14-19</td>
+                <td>260 Minutes</td>
+                <td>Diagnostic &amp; Drafting</td>
+                <td>Mid-Unit Checkpoint (Lesson 16)</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4" class="pacing-footer"><a href="#" class="blue-link">↓ View full pacing</a></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Unit Context -->
+      <div class="unit-context-section">
+        <div class="section-heading">Unit Context</div>
+
+        <!-- Knowledge-Building Topic box -->
+        <div class="knowledge-box">
+          <div class="knowledge-box-header">
+            <span>🌱</span>
+            <span>Knowledge-Building Topic</span>
+          </div>
+          <p>Belonging and Social Constructs - Youth Identity, Class, and Peer Belonging in America</p>
+        </div>
+
+        <!-- 2-column grid row 1 -->
+        <div class="context-grid" style="margin-bottom:16px;">
+          <div class="context-card">
+            <div class="context-card-header">
+              <span>💡</span>
+              <span>I'm Learning About</span>
+            </div>
+            <ul>
+              <li>How friendships, loyalty, and conflict shape identity.</li>
+              <li>How class differences affect belonging and choices.</li>
+              <li>How literature builds empathy by showing multiple perspectives.</li>
+            </ul>
+          </div>
+          <div class="context-card">
+            <div class="context-card-header">
+              <span>🎯</span>
+              <span>Knowledge Goals</span>
+            </div>
+            <ul>
+              <li>Analyze how friendships and loyalties influence decision-making.</li>
+              <li>Evaluate how point of view builds empathy across divides.</li>
+              <li>Compare how different social groups experience belonging.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2-column grid row 2 -->
+        <div class="context-grid">
+          <div class="context-card">
+            <div class="context-card-header">
+              <span>❓</span>
+              <span>Knowledge-Building Questions</span>
+            </div>
+            <ul>
+              <li>How do social groups shape individual identity?</li>
+              <li>What forces push people together or apart across social divides?</li>
+              <li>How does our sense of belonging change as we grow?</li>
+            </ul>
+          </div>
+          <div class="context-card">
+            <div class="context-card-header">
+              <span>🔑</span>
+              <span>Essential Questions</span>
+            </div>
+            <ul>
+              <li>What makes a friendship last through change?</li>
+              <li>Why do people react to the same situation in differently?</li>
+              <li>SEL: perspective-taking, identity, community awareness.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unit Texts -->
+      <div class="unit-texts-section">
+        <div class="section-heading">Unit Texts</div>
+
+        <!-- Sub-tabs -->
+        <div class="sub-tabs">
+          <button class="sub-tab-btn active">Anchor Text</button>
+          <button class="sub-tab-btn">Connected Text Sets</button>
+          <button class="sub-tab-btn">Independent Reading</button>
+        </div>
+
+        <!-- Texts Grid (2 columns × 3 rows) -->
+        <div class="texts-grid">
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">SHORT-FORM TEXT</div>
+              <div class="text-title-serif">They wanted tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+              <div class="text-author">— J.D. Salinger</div>
+              <a href="view.html" class="text-read-link">Read text ›</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text1/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">NOVEL</div>
+              <div class="text-title-serif">The Outsiders: A Story of Two Worlds Colliding in the American Midwest</div>
+              <div class="text-author">— S.E. Hinton</div>
+              <a href="#" class="text-read-link">Open PDF ↗</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text2/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">SHORT-FORM TEXT</div>
+              <div class="text-title-serif">They wanted tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+              <div class="text-author">— J.D. Salinger</div>
+              <a href="view.html" class="text-read-link">Read text ›</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text3/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">NOVEL</div>
+              <div class="text-title-serif">Wonder: Auggie Pullman and the Transformative Power of Kindness</div>
+              <div class="text-author">— R.J. Palacio</div>
+              <a href="#" class="text-read-link">Open PDF ↗</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text4/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">SHORT-FORM TEXT</div>
+              <div class="text-title-serif">They wanted tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+              <div class="text-author">— J.D. Salinger</div>
+              <a href="view.html" class="text-read-link">Read text ›</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text5/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+          <div class="unit-text-card">
+            <div class="text-card-copy">
+              <div class="text-type-label-purple">NOVEL</div>
+              <div class="text-title-serif">The House on Mango Street: A Chicana Girl Finding Voice in Her Community</div>
+              <div class="text-author">— Sandra Cisneros</div>
+              <a href="#" class="text-read-link">Open PDF ↗</a>
+            </div>
+            <div class="text-card-image">
+              <img src="https://picsum.photos/seed/text6/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /tab-overview -->
+
+    <!-- ═══ TAB PANEL: Lessons ═══ -->
+    <div id="tab-lessons" class="tab-panel" style="display:none;">
+
+      <!-- Header row -->
+      <div class="lessons-header">
+        <div class="lessons-header-left">
+          <span class="lessons-title">All Lessons</span>
+          <span class="lessons-total">(50 total)</span>
+        </div>
+        <button class="expand-all-btn">Expand All <span style="font-size:10px;">▼</span></button>
+      </div>
+
+      <!-- Lesson list -->
+      <div class="lesson-list">
+
+        <!-- Lesson 1 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#1</span>
+            <span class="lesson-row-title">Lesson 1: The Role Of Service In Personal Development (Ch. 14)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#2</span>
+            <span class="lesson-row-title">Lesson 2: Building Connections Through Community (Ch. 13)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-writing">WRITING</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#3</span>
+            <span class="lesson-row-title">Lesson 3: Understanding Musicians In Society (Ch. 18)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-flexday">FLEX DAY</span><span class="lesson-time-text">45 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 4 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#4</span>
+            <span class="lesson-row-title">Lesson 4: The Role Of Service In Community Growth (Ch. 2)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-spark">SPARK</span><span class="lesson-time-text">30 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 5 — expanded by default -->
+        <div class="lesson-row-unit open">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#5</span>
+            <span class="lesson-row-title">Lesson 5: Community And Social Justice (Ch. 15)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-presentation">PRESENTATION</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(90deg);"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel">
+
+            <!-- Standards -->
+            <div class="lesson-detail-section">
+              <div class="lesson-detail-label">Standards</div>
+              <div class="lesson-standards-row">
+                <div class="lesson-standards-group">
+                  <span class="lesson-standards-group-label">California CCSS Focus Standards</span>
+                  <span class="chip">RI.1.1</span>
+                  <span class="chip">RI.1.2</span>
+                </div>
+                <div class="lesson-standards-group">
+                  <span class="lesson-standards-group-label">ELD Standards</span>
+                  <span class="chip">ELD.1</span>
+                  <span class="chip">ELD.2</span>
+                  <span class="chip">ELD.3</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Texts -->
+            <div class="lesson-detail-section">
+              <div class="lesson-detail-label">Texts</div>
+              <div class="lesson-texts-grid">
+                <div class="unit-text-card">
+                  <div class="text-card-copy">
+                    <div class="text-type-label-purple">SHORT-FORM TEXT</div>
+                    <div class="text-title-serif">They wanted tandoori chicken: Australia's slow embrace of regional Indian cuisine</div>
+                    <div class="text-author">— J.D. Salinger</div>
+                    <a href="view.html" class="text-read-link">Read text ›</a>
+                  </div>
+                  <div class="text-card-image">
+                    <img src="https://picsum.photos/seed/l5text1/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+                  </div>
+                </div>
+                <div class="unit-text-card">
+                  <div class="text-card-copy">
+                    <div class="text-type-label-purple">NOVEL</div>
+                    <div class="text-title-serif">The Outsiders: A Story of Two Worlds Colliding in the American Midwest</div>
+                    <div class="text-author">— S.E. Hinton</div>
+                    <a href="#" class="text-read-link">Open PDF ↗</a>
+                  </div>
+                  <div class="text-card-image">
+                    <img src="https://picsum.photos/seed/l5text2/80/110" alt="" style="width:80px;height:110px;object-fit:cover;border-radius:4px;" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="lesson-detail-section">
+              <div class="lesson-detail-label">Learning Objectives</div>
+              <div class="lesson-obj-grid">
+                <div class="lesson-obj-card">
+                  <div class="lesson-obj-num">1</div>
+                  <div class="lesson-obj-label">Content Objective</div>
+                  <div class="lesson-obj-text">Students will analyze how Pancho's point of view reveals social division that shapes his identity and sense of belonging.</div>
+                </div>
+                <div class="lesson-obj-card">
+                  <div class="lesson-obj-num">2</div>
+                  <div class="lesson-obj-label">Language Objective</div>
+                  <div class="lesson-obj-text">Students will use transition words (because, as a result, therefore) to explain connections between point of view and empathy.</div>
+                </div>
+                <div class="lesson-obj-card">
+                  <div class="lesson-obj-num">3</div>
+                  <div class="lesson-obj-label">Foundational Skill Focus</div>
+                  <div class="lesson-obj-text">Morphology and fluency with complex sentences from the text.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <a href="lesson-guide.html" class="go-to-lesson-btn">Go to lesson ›</a>
+
+          </div>
+        </div>
+
+        <!-- Lesson 6 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#6</span>
+            <span class="lesson-row-title">Lesson 6: Building Bonds And Facing Outcomes (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 7 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#7</span>
+            <span class="lesson-row-title">Lesson 7: Strengthening Connections And Their Impact (Ch. 5)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-spark">SPARK</span><span class="lesson-time-text">30 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 8 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#8</span>
+            <span class="lesson-row-title">Lesson 8: Nurturing Relationships And Their Consequences (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-flexday">FLEX DAY</span><span class="lesson-time-text">45 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 9 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#9</span>
+            <span class="lesson-row-title">Lesson 9: The Power Of Community And Its Effects (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-presentation">PRESENTATION</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 10 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#10</span>
+            <span class="lesson-row-title">Lesson 10: Cultivating Togetherness And Its Outcomes (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 11 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#11</span>
+            <span class="lesson-row-title">Lesson 11: Fostering Connections And Their Repercussions (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-academic-discussion">ACADEMIC DISCUSSION</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 12 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#12</span>
+            <span class="lesson-row-title">Lesson 12: The Impact Of Unity And Its Consequences (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-writing">WRITING</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 13 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#13</span>
+            <span class="lesson-row-title">Lesson 13: Embracing Community And Its Effects (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-academic-discussion">ACADEMIC DISCUSSION</span><span class="lesson-time-text">20 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 14 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#14</span>
+            <span class="lesson-row-title">Lesson 14: The Importance Of Togetherness And Its Outcomes (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 15 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#15</span>
+            <span class="lesson-row-title">Lesson 15: Connecting Hearts And Their Consequences (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-spark">SPARK</span><span class="lesson-time-text">30 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 16 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#16</span>
+            <span class="lesson-row-title">Lesson 16: The Ripple Effect Of Relationships (Ch. 6)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-flexday">FLEX DAY</span><span class="lesson-time-text">45 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 17 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#17</span>
+            <span class="lesson-row-title">Lesson 17: The Influence Of Community Ties (Ch. 7)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-presentation">PRESENTATION</span><span class="lesson-time-text">15 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 18 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#18</span>
+            <span class="lesson-row-title">Lesson 18: The Dynamics Of Connection And Its Outcomes (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 19 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#19</span>
+            <span class="lesson-row-title">Lesson 19: The Strength Of Bonds And Their Effects (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-academic-discussion">ACADEMIC DISCUSSION</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 20 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#20</span>
+            <span class="lesson-row-title">Lesson 20: The Role Of Togetherness And Its Consequences (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-writing">WRITING</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 21 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#21</span>
+            <span class="lesson-row-title">Lesson 21: The Impact Of Human Connections (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 22 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#22</span>
+            <span class="lesson-row-title">Lesson 22: The Power Of Community (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-spark">SPARK</span><span class="lesson-time-text">40 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 23 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#23</span>
+            <span class="lesson-row-title">Lesson 23: The Significance Of Relationships And Their Effects (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-flexday">FLEX DAY</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 24 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#24</span>
+            <span class="lesson-row-title">Lesson 24: The Consequences Of Connection (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-presentation">PRESENTATION</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 25 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#25</span>
+            <span class="lesson-row-title">Lesson 25: The Outcomes Of Community Engagement (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-reading">READING</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 26 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#26</span>
+            <span class="lesson-row-title">Lesson 26: The Effects Of Building Relationships (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-writing">WRITING</span><span class="lesson-time-text">60 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+        <!-- Lesson 27 -->
+        <div class="lesson-row-unit">
+          <div class="lesson-row-header">
+            <span class="lesson-num-badge">#27</span>
+            <span class="lesson-row-title">Lesson 27: The Importance Of Community And Its Impact (Ch. 4)</span>
+            <div class="lesson-row-right"><span class="lesson-pill pill-academic-discussion">ACADEMIC DISCUSSION</span><span class="lesson-time-text">80 min</span><span class="lesson-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span></div>
+          </div>
+          <div class="lesson-detail-panel"></div>
+        </div>
+
+      </div><!-- /lesson-list -->
+    </div>
+
+    <!-- ═══ TAB PANEL: Assessments ═══ -->
+    <div id="tab-assessments" class="tab-panel" style="display:none;">
+      <div class="section-heading">Assessments</div>
+      <div class="assessments-table-wrap">
+        <table class="assessments-table">
+          <thead>
+            <tr>
+              <th>Assessment</th>
+              <th>Type</th>
+              <th>Timing</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lesson Close Assessment</td>
+              <td>Formative</td>
+              <td>After each lesson</td>
+              <td><span class="status-badge status-ongoing">Ongoing</span></td>
+            </tr>
+            <tr>
+              <td>Mid-Unit Checkpoint</td>
+              <td>Summative</td>
+              <td>Lesson 10, 16</td>
+              <td><span class="status-badge status-upcoming">Upcoming</span></td>
+            </tr>
+            <tr>
+              <td>End-of-Unit Assessment</td>
+              <td>Summative</td>
+              <td>Lesson 40</td>
+              <td><span class="status-badge status-notstarted">Not started</span></td>
+            </tr>
+            <tr>
+              <td>Performance Task</td>
+              <td>Project</td>
+              <td>End of unit</td>
+              <td><span class="status-badge status-notstarted">Not started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /tab-assessments -->
+
+    <!-- ═══ TAB PANEL: Additional Resources ═══ -->
+    <div id="tab-resources" class="tab-panel" style="display:none;">
+      <div class="resources-header">
+        <div class="resources-heading">Additional Resources <span style="font-weight:400;color:#5B5A61;">(12 total)</span></div>
+        <a href="#" class="resources-download-link">Download all Materials ↓</a>
+      </div>
+
+      <div class="resources-grid">
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+        <div class="resource-row">
+          <img src="../Reference images/pdf-icon.png" width="20" height="20" alt="PDF" />
+          <div class="resource-info">
+            <div class="resource-name">Lorem ipsum dolor sti amet dolor</div>
+            <div class="resource-size">153kb</div>
+          </div>
+          <a href="#" class="resource-preview-link">Preview ↗</a>
+        </div>
+
+
+      </div>
+    </div><!-- /tab-resources -->
+
+  </main>
+</div><!-- /page-layout -->
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).style.display = 'block';
+    });
+  });
+
+  // Sidebar nav
+  function toggleUnit(header) {
+    const unit = header.closest('.nav-unit');
+    const children = unit.querySelector('.nav-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) header.classList.add('active-unit');
+    else header.classList.remove('active-unit');
+  }
+
+  function toggleRange(rangeRow) {
+    const group = rangeRow.closest('.nav-range-group');
+    const children = group.querySelector('.nav-range-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) rangeRow.classList.add('range-open');
+    else rangeRow.classList.remove('range-open');
+  }
+
+  function setActive(lessonEl) {
+    window.location.href = 'lesson-guide.html';
+  }
+
+  // Lesson row: chevron toggles expand, clicking row header navigates to lesson guide
+  document.querySelectorAll('.lesson-row-unit').forEach(row => {
+    row.querySelector('.lesson-chevron').addEventListener('click', (e) => {
+      e.stopPropagation();
+      row.classList.toggle('open');
+      const svg = row.querySelector('.lesson-chevron svg');
+      if (svg) svg.style.transform = row.classList.contains('open') ? 'rotate(90deg)' : '';
+    });
+    row.querySelector('.lesson-row-header').addEventListener('click', () => {
+      window.location.href = 'lesson-guide.html';
+    });
+  });
+</script>
+
+</body>
+</html>

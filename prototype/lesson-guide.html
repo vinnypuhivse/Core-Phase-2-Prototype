@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: Community And Social Justice — Newsela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-beige: #faf9f5;
+      --neutral-700: #1D1D1D;
+      --neutral-600: #424147;
+      --neutral-500: #5B5A61;
+      --neutral-400: #77767A;
+      --neutral-300: #8D8D96;
+      --neutral-200: #A8AAB0;
+      --neutral-100: #E1E3E5;
+      --neutral-50: #F0F1F2;
+      --core-700: #082C88;
+      --core-600: #0F3FDE;
+      --core-500: #0A6EFA;
+      --core-100: #A6CCFF;
+      --core-50: #CCE1FF;
+      --purple-700: #54005C;
+      --purple-600: #720780;
+      --purple-500: #8B1EA4;
+      --purple-50: #E7DCF6;
+      --purple-25: #F2EDFA;
+      --orange-bg: #FFD1B4;
+      --orange-text: #923800;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--neutral-700);
+      background: var(--bg-beige);
+      min-width: 1440px;
+      font-size: 14px;
+      line-height: 1.71;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--white);
+      border-bottom: 1px solid var(--neutral-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 100;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-500);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-link:hover {
+      background: var(--neutral-50);
+      color: var(--neutral-700);
+    }
+
+    .nav-link.active {
+      color: var(--core-500);
+      background: var(--core-50);
+    }
+
+    .avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--core-500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .avatar-caret {
+      font-size: 10px;
+      color: var(--neutral-400);
+    }
+
+    /* ── LAYOUT ── */
+    .page-body {
+      display: flex;
+      padding-top: 64px;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 284px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--neutral-100);
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--neutral-100); border-radius: 4px; }
+
+    /* Course thumbnail */
+    .sidebar-thumb-wrap {
+      width: 268px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+
+    .sidebar-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Grade/course title row */
+    .sidebar-course-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      padding: 4px 8px;
+      line-height: 1.71;
+      height: 32px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-tree {
+      list-style: none;
+    }
+
+    /* Unit row */
+    .nav-unit {
+      margin-bottom: 0;
+    }
+
+    .nav-unit-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 32px;
+      padding: 4px 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      transition: background 0.12s;
+      user-select: none;
+    }
+
+    .nav-unit-header:hover { background: var(--neutral-50); }
+
+    .nav-unit-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neutral-400);
+      flex-shrink: 0;
+    }
+
+    .nav-unit-chevron svg {
+      transition: transform 0.2s ease;
+    }
+
+    .nav-unit-header.active-unit .nav-unit-chevron svg {
+      transform: rotate(90deg);
+    }
+
+    .nav-unit-header.active-unit {
+      color: var(--core-500);
+    }
+
+    .nav-children {
+      list-style: none;
+    }
+
+    /* Range row */
+    .nav-range {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 4px 4px 4px 28px;
+      gap: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      border-radius: 6px;
+      transition: background 0.12s;
+      user-select: none;
+    }
+
+    .nav-range:hover { background: var(--neutral-50); }
+
+    .nav-range-chevron {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neutral-400);
+      flex-shrink: 0;
+    }
+
+    .nav-range-chevron svg {
+      transition: transform 0.2s ease;
+    }
+
+    .nav-range.range-open .nav-range-chevron svg {
+      transform: rotate(90deg);
+    }
+
+    /* Lesson row */
+    .nav-lesson {
+      display: flex;
+      align-items: center;
+      height: 32px;
+      padding: 4px 4px 4px 52px;
+      font-size: 14px;
+      color: var(--neutral-600);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.12s;
+      font-weight: 400;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-lesson:hover { background: var(--neutral-50); }
+
+    .nav-lesson.active {
+      background: var(--core-50);
+      color: var(--core-500);
+      font-weight: 600;
+      border-radius: 6px;
+      border-left: 3px solid var(--core-500);
+      padding-left: 49px;
+    }
+
+    .nav-lesson-label {
+      /* label text */
+    }
+
+    .nav-range-group { list-style: none; }
+    .nav-range-children { list-style: none; }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      flex: 1;
+      padding: 32px;
+      max-width: calc(1440px - 284px);
+      background: var(--bg-beige);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--neutral-600);
+      margin-bottom: 40px;
+    }
+
+    .breadcrumb a {
+      color: var(--neutral-600);
+      text-decoration: underline;
+      transition: color 0.12s;
+      font-size: 12px;
+    }
+
+    .breadcrumb a:hover { color: var(--core-500); }
+    .breadcrumb .sep { color: var(--neutral-400); font-size: 10px; margin: 0 2px; }
+    .breadcrumb .current { color: var(--neutral-600); text-decoration: none; }
+
+    /* ── H1 SECTION ── */
+    .h1-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    /* Badge — orange/peach pill, 4px radius */
+    .badge-presentation {
+      display: inline-flex;
+      align-items: center;
+      background: var(--orange-bg);
+      color: var(--orange-text);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      height: 24px;
+      line-height: 1.33;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    /* Title — Noto Serif Medium 40px */
+    .page-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 40px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+
+    /* Duration — purple text */
+    .duration-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--purple-500);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.71;
+    }
+
+    /* Standards row — 3 cols with gap:16px */
+    .standards-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .standards-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .standards-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1.14;
+      white-space: nowrap;
+    }
+
+    .standards-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Standard tag: Core/100 bg (#A6CCFF), black text, rounded-12px, px-8 py-4 */
+    .std-tag {
+      background: var(--core-100);
+      color: #000000;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-block;
+      line-height: 1.33;
+      white-space: nowrap;
+    }
+
+    /* ── LESSON CARD (blue) ── */
+    .lesson-card-outer {
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .lesson-card {
+      background: #0A6EFA;
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 96px;
+    }
+
+    .lesson-card-icon-text {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* illustration sits left, text clears it via margin */
+    .lesson-card-icon {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: visible;
+    }
+
+    .lesson-card-icon img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      position: absolute;
+      left: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lesson-card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 24px;
+      flex: 1;
+    }
+
+    /* Label: Caps Bold, #F2EDFA (purple/25) */
+    .lesson-card-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--purple-25);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.33;
+    }
+
+    /* Card title: Noto Serif Medium 20px white */
+    .lesson-card-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+
+    .lesson-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Print Lesson: Secondary/outline style, 48px tall */
+    .btn-print-guide {
+      height: 48px;
+      padding: 0 20px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      background: transparent;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+
+    .btn-print-guide:hover { background: rgba(255,255,255,0.1); }
+
+    /* Assign: Primary white bg, blue text, 48px tall */
+    .btn-assign {
+      height: 48px;
+      padding: 0 20px;
+      border: none;
+      background: var(--white);
+      color: var(--core-500);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .btn-assign:hover { opacity: 0.9; }
+
+    /* Share link */
+    .share-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .share-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--core-500);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .share-link:hover { text-decoration: underline; }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    /* Section heading: Circular Bold 24px #1D1D1D */
+    .section-title {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1.33;
+    }
+
+    /* ── STUDENT LEARNING OBJECTIVES ── */
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* White card, rounded-24px, p-24px, gap-24px between icon and text */
+    .objective-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .objective-icon {
+      width: 56px;
+      height: 56px;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+      border-radius: 50%;
+    }
+
+    .objective-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Numbered icon: star bg + number overlay */
+    .obj-icon-wrap {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .obj-icon-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .objective-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 16px;
+    }
+
+    /* Objective type: Noto Serif Medium 16px */
+    .objective-type {
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+    }
+
+    /* Objective description: Circular Book 16px #424147 */
+    .objective-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--neutral-600);
+    }
+
+    /* ── ESSENTIAL QUESTION ── */
+    .essential-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .eq-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      margin-top: 4px;
+    }
+
+    .eq-icon img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+
+    .eq-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* EQ heading: Noto Serif Medium 20px */
+    .eq-label {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+    }
+
+    /* EQ text: Circular Book 16px */
+    .eq-text {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-700);
+      line-height: 1.5;
+    }
+
+    /* ── CONNECTIONS TO (2x2 grid) ── */
+    .connections-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .connection-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Connection title: Noto Serif Medium 16px */
+    .connection-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+    }
+
+    /* Connection body: Circular Book 16px #424147 */
+    .connection-text {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    /* ── PACING TABLE ── */
+    /* White card with rounded-8, border #E1E3E5 */
+    .pacing-table-wrap {
+      background: var(--white);
+      border: 1px solid var(--neutral-100);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pacing-header-row {
+      display: flex;
+      gap: 32px;
+      height: 48px;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--neutral-100);
+      padding-right: 24px;
+    }
+
+    .pacing-header-flow {
+      width: 210px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--neutral-500);
+      line-height: 1.33;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .pacing-header-purpose {
+      flex: 1;
+      padding: 8px 0;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--neutral-500);
+      line-height: 1.33;
+      display: flex;
+      align-items: center;
+    }
+
+    .pacing-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pacing-row {
+      display: flex;
+      gap: 32px;
+      align-items: stretch;
+      border-bottom: 1px solid var(--neutral-50);
+      padding-right: 24px;
+    }
+
+    .pacing-row:last-child {
+      border-bottom: none;
+    }
+
+    .pacing-cell-left {
+      width: 210px;
+      flex-shrink: 0;
+      padding: 16px;
+      border-right: 1px solid var(--neutral-100);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* Pacing row name: Noto Serif Medium 16px */
+    .pacing-cell-name {
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+    }
+
+    /* Pacing time: Circular Book 16px #424147 */
+    .pacing-cell-time {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    .pacing-cell-right {
+      flex: 1;
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    .pacing-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 0;
+      border-top: 1px solid var(--neutral-100);
+      box-shadow: 0px -1px 2px rgba(120,120,120,0.25);
+      height: 40px;
+    }
+
+    .view-full-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--core-500);
+      text-decoration: none;
+    }
+
+    .view-full-link:hover { text-decoration: underline; }
+
+    /* ── VOCABULARY ── */
+    /* White card, rounded-24px, p-24px */
+    .vocab-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    /* Vocab heading: Noto Serif Medium 20px capitalize */
+    .vocab-heading {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      text-transform: capitalize;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      height: 336px;
+    }
+
+    /* Vocab col label: Caps Bold 12px #54005C (purple/700) */
+    .vocab-col-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--purple-700);
+      margin-bottom: 16px;
+      line-height: 1.33;
+    }
+
+    /* Vocab entries: Circular Book 16px, bold word inline */
+    .vocab-entry {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-700);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .vocab-entry:last-child { margin-bottom: 0; }
+
+    .vocab-word {
+      font-weight: 700;
+      display: block;
+    }
+
+    .vocab-def {
+      display: block;
+      font-weight: 400;
+    }
+
+    .vocab-empty {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-700);
+      line-height: 1.5;
+    }
+
+    /* ── MATERIAL LIST & ROUTINES ── */
+    /* Purple/50 (#E7DCF6) cards, rounded-24px */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      height: 288px;
+    }
+
+    .materials-card {
+      background: var(--purple-50);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--neutral-700);
+    }
+
+    /* Material title: Noto Serif Medium 20px capitalize */
+    .materials-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+
+    /* Material list: Circular Book 18px, disc */
+    .materials-list {
+      list-style: disc;
+      padding-left: 27px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.78;
+      color: var(--neutral-700);
+    }
+
+    .materials-list li {
+      white-space: nowrap;
+    }
+
+    /* ── LESSON SEQUENCE ── */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Each accordion item: white, rounded-24px, p-24px */
+    .accordion-item {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .accordion-left {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Accordion title: Noto Serif Medium 20px capitalize */
+    .accordion-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Time badge: purple text 14px */
+    .accordion-time {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-500);
+      line-height: 1.71;
+      white-space: nowrap;
+    }
+
+    .accordion-chevron {
+      flex-shrink: 0;
+      padding-left: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .accordion-chevron svg {
+      transition: transform 0.2s;
+      color: var(--neutral-400);
+    }
+
+    .accordion-item.open .accordion-chevron svg {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      display: none;
+      padding-top: 16px;
+      font-size: 14px;
+      color: var(--neutral-500);
+      line-height: 1.71;
+      border-top: 1px solid var(--neutral-100);
+      margin-top: 16px;
+    }
+
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+
+    /* Expand all button */
+    .expand-all {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-700);
+      text-decoration: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .expand-all:hover { text-decoration: underline; }
+
+    /* ── LESSON TEXTS ── */
+    /* White cards, rounded-24px, p-24px, gap-16px */
+    .texts-grid {
+      display: flex;
+      gap: 24px;
+    }
+
+    .text-card {
+      flex: 1;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .text-card-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-self: stretch;
+      gap: 8px;
+    }
+
+    .text-card-info-top {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Type label: Caps Bold 12px purple-500 */
+    .text-card-type {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--purple-500);
+      line-height: 1.33;
+    }
+
+    /* Text title: Noto Serif Medium 16px */
+    .text-card-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Author: Circular Book 14px #5B5A61 */
+    .text-card-author {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      line-height: 1.71;
+    }
+
+    /* Link button: Circular Book 16px purple-700 */
+    .text-card-link {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--purple-700);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 0;
+    }
+
+    .text-card-link:hover { text-decoration: underline; }
+
+    /* Book thumbnail */
+    .text-book-thumb {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .text-book-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── LESSON MATERIALS ── */
+    .lm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .lm-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .lm-col-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .lm-col-title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    /* Heading: Circular Bold 20px */
+    .lm-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1.2;
+    }
+
+    /* Count: Circular Book 16px #5B5A61 */
+    .lm-count {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      line-height: 1.5;
+    }
+
+    /* Download all link: tertiary button style */
+    .lm-download-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-700);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .lm-download-link:hover { text-decoration: underline; }
+
+    /* File rows: white cards rounded-24px, p-24px each */
+    .lm-files {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .lm-row {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* PDF icon 40x40 */
+    .lm-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* File name: Noto Serif Medium 16px */
+    .lm-name {
+      flex: 1;
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* File size: Circular Book 14px #5B5A61 */
+    .lm-size {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      line-height: 1.71;
+    }
+
+    .lm-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Preview link: Circular Book 14px purple-700 */
+    .lm-preview-link {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-700);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1.14;
+    }
+
+    .lm-preview-link:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--neutral-100);
+      padding: 0 32px;
+      margin-left: 284px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--neutral-300);
+    }
+
+    .footer a {
+      color: var(--neutral-300);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+
+    .footer a:hover { color: var(--neutral-500); }
+    .footer-sep { color: var(--neutral-200); }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="header-logo">
+    <a href="index.html"><img src="../Reference images/Logo.png" alt="Newsela Threads &amp; Themes" style="height: 32px; display: block;" /></a>
+  </div>
+  <nav class="header-nav">
+    <a href="index.html" class="nav-link">Courses</a>
+    <a href="assignments.html" class="nav-link">Assignments</a>
+    <a href="#" class="nav-link">Reporting</a>
+    <div class="avatar-wrap">
+      <div class="avatar">DG</div>
+      <span class="avatar-caret">▾</span>
+    </div>
+  </nav>
+</header>
+
+<!-- ── PAGE BODY ── -->
+<div class="page-body">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-thumb-wrap">
+      <img class="sidebar-thumb" src="https://picsum.photos/seed/course/268/80" alt="Course thumbnail">
+    </div>
+    <p class="sidebar-course-title">ELA Core 8th Grade</p>
+
+    <ul class="nav-tree">
+      <!-- Unit 1 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 1</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 3</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 4</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 5</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 6</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 7</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 8</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 9</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 10</span></li>
+            </ul>
+          </li>
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 11–20</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 11</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 12</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 2 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 2</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 3 expanded with active lesson -->
+      <li class="nav-unit">
+        <div class="nav-unit-header active-unit" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 3</span>
+        </div>
+        <ul class="nav-children">
+          <!-- Range: Lesson 1–10 (expanded) -->
+          <li class="nav-range-group">
+            <div class="nav-range range-open" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 3</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 4</span></li>
+              <li class="nav-lesson active" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 5</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 6</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 7</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 8</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 9</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 10</span></li>
+            </ul>
+          </li>
+          <!-- Range: Lesson 11–20 (collapsed) -->
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 11–20</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 11</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 12</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 13</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 14</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 15</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 16</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 17</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 18</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 19</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 20</span></li>
+            </ul>
+          </li>
+          <!-- Range: Lesson 21–30 (collapsed) -->
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 21–30</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 21</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 22</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 23</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 24</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 25</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 26</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 27</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 28</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 29</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 30</span></li>
+            </ul>
+          </li>
+          <!-- Range: Lesson 31–40 (collapsed) -->
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 31–40</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 31</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 32</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 33</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 34</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 35</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 36</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 37</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 38</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 39</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 40</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Unit 4 collapsed -->
+      <li class="nav-unit">
+        <div class="nav-unit-header" onclick="toggleUnit(this)">
+          <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+          <span>Unit 4</span>
+        </div>
+        <ul class="nav-children" style="display:none">
+          <li class="nav-range-group">
+            <div class="nav-range" onclick="toggleRange(this)">
+              <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+              <span>Lesson 1–10</span>
+            </div>
+            <ul class="nav-range-children" style="display:none">
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 1</span></li>
+              <li class="nav-lesson" onclick="setActive(this)"><span class="nav-lesson-label">Lesson 2</span></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-content">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <a href="course.html">ELA Core 8th Grade</a>
+      <span class="sep">›</span>
+      <a href="unit.html">Unit 3</a>
+      <span class="sep">›</span>
+      <span class="current">Lesson 5</span>
+    </nav>
+
+    <!-- H1 Section -->
+    <div class="h1-section">
+      <!-- Badge — orange/peach, 4px radius -->
+      <span class="badge-presentation">Presentation</span>
+
+      <!-- Title — Noto Serif Medium 40px -->
+      <h1 class="page-title">Lesson 5: Community and Social Justice (Ch. 15)</h1>
+
+      <!-- Duration — purple text -->
+      <div class="duration-badge">
+        45 min
+      </div>
+    </div>
+
+    <!-- Standards row -->
+    <div class="standards-row">
+      <div class="standards-col">
+        <p class="standards-label">California CCSS: Focus Standards</p>
+        <div class="standards-tags">
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+        </div>
+      </div>
+      <div class="standards-col">
+        <p class="standards-label">California CCSS: Supporting standards</p>
+        <div class="standards-tags">
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">S.L.6.1.a</span>
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">S.L.6.1.a</span>
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">L.6.4.a</span>
+          <span class="std-tag">+ View all</span>
+        </div>
+      </div>
+      <div class="standards-col">
+        <p class="standards-label">ELD Standards</p>
+        <div class="standards-tags">
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">S.L.6.1.a</span>
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">S.L.6.1.a</span>
+          <span class="std-tag">RL.6.1</span>
+          <span class="std-tag">RL.6.5</span>
+          <span class="std-tag">L.6.4.a</span>
+          <span class="std-tag">+ View all</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blue lesson card -->
+    <div class="lesson-card-outer" style="margin-bottom: 8px;">
+      <div class="lesson-card">
+        <div class="lesson-card-icon-text">
+          <div class="lesson-card-icon">
+            <img src="../Reference images/splash.png" alt="" />
+          </div>
+          <div class="lesson-card-text">
+            <p class="lesson-card-label">Student Lesson</p>
+            <p class="lesson-card-title">Lesson 5: Community and Social Justice (Ch. 15)</p>
+          </div>
+        </div>
+        <div class="lesson-card-actions">
+          <button class="btn-print-guide">Print Lesson</button>
+          <a href="https://app.formative.com/formatives/698de12b20a26915229c649c" target="_blank" class="btn-assign">Assign interactive lesson</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share link -->
+    <div class="share-row">
+      <a href="#" class="share-link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/></svg>
+        Share
+      </a>
+    </div>
+
+    <!-- Section: Student Learning Objectives -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Student Learning Objectives</h2>
+      </div>
+      <div class="objectives-grid">
+        <!-- Card 1 -->
+        <div class="objective-card">
+          <div class="obj-icon-wrap">
+            <img src="../Reference images/illustration icons.png" alt="1" />
+          </div>
+          <div class="objective-text-block">
+            <p class="objective-type">Content Objective</p>
+            <p class="objective-text">Students will analyze how Ponyboy's point of view reveals social divides that shape his identity and sense of belonging.</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="objective-card">
+          <div class="obj-icon-wrap">
+            <img src="../Reference images/illustration icons-1.png" alt="2" />
+          </div>
+          <div class="objective-text-block">
+            <p class="objective-type">Language Objective</p>
+            <p class="objective-text">Students will use transition words (because, as a result, therefore) to explain connections between point of view and empathy.</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="objective-card">
+          <div class="obj-icon-wrap">
+            <img src="../Reference images/illustration icons-2.png" alt="3" />
+          </div>
+          <div class="objective-text-block">
+            <p class="objective-type">Foundational Skill Focus</p>
+            <p class="objective-text">Morphology and fluency with complex sentences from the text.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Essential Question -->
+    <section class="section">
+      <div class="essential-card">
+        <div class="eq-icon">
+          <img src="../Reference images/illustration question.png" alt="Essential Question" />
+        </div>
+        <div class="eq-content">
+          <p class="eq-label">Essential Question</p>
+          <p class="eq-text">What does it take to learn something difficult?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Connections to -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Connections to</h2>
+      </div>
+      <div class="connections-grid">
+        <div class="connection-card">
+          <p class="connection-title">Knowledge Building</p>
+          <p class="connection-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="connection-card">
+          <p class="connection-title">Enduring Understanding</p>
+          <p class="connection-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="connection-card">
+          <p class="connection-title">Future Lessons</p>
+          <p class="connection-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="connection-card">
+          <p class="connection-title">Unit Performance Task</p>
+          <p class="connection-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Lesson Pacing -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Lesson Pacing</h2>
+      </div>
+      <div class="pacing-table-wrap">
+        <!-- Header -->
+        <div class="pacing-header-row">
+          <div class="pacing-header-flow">Lesson flow</div>
+          <div class="pacing-header-purpose">Purpose of learning experience</div>
+        </div>
+        <!-- Body rows -->
+        <div class="pacing-body">
+          <div class="pacing-row">
+            <div class="pacing-cell-left">
+              <p class="pacing-cell-name">Launch</p>
+              <p class="pacing-cell-time">5 Minutes</p>
+            </div>
+            <div class="pacing-cell-right">
+              Students will engage in a partner discussion to review their homework reading of chapter 4 to prepare for this lesson's core reading work.
+            </div>
+          </div>
+          <div class="pacing-row">
+            <div class="pacing-cell-left">
+              <p class="pacing-cell-name">Targeted Instruction</p>
+              <p class="pacing-cell-time">10 Minutes</p>
+            </div>
+            <div class="pacing-cell-right">
+              Students will engage in a partner discussion to review their homework reading of chapter 4 to prepare for this lesson's core reading work.
+            </div>
+          </div>
+          <div class="pacing-row">
+            <div class="pacing-cell-left">
+              <p class="pacing-cell-name">Worktime</p>
+              <p class="pacing-cell-time">30 Minutes</p>
+            </div>
+            <div class="pacing-cell-right">
+              Worktime A: Students will engage in close reading of Chapter 4 excerpts while engaging in small group discussion and collaborative annotation.
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div class="pacing-footer">
+          <a href="#" class="view-full-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="width:16px;height:16px;"><path d="M7.646 10.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 9.293V4.5a.5.5 0 0 0-1 0v4.793L6.354 8.146a.5.5 0 1 0-.708.708l2 2z"/><path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/></svg>
+            View full pacing
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Vocabulary -->
+    <section class="section">
+      <div class="vocab-card">
+        <p class="vocab-heading">Vocabulary</p>
+        <div class="vocab-grid">
+          <!-- Key Lesson Vocabulary -->
+          <div>
+            <p class="vocab-col-title">Key lesson vocabulary</p>
+            <div class="vocab-entry"><span class="vocab-word">Endurance</span><span class="vocab-def">Student friendly definition for the word.</span></div>
+            <div class="vocab-entry"><span class="vocab-word">Endurance</span><span class="vocab-def">Student friendly definitions for the word.</span></div>
+            <div class="vocab-entry"><span class="vocab-word">Resource</span><span class="vocab-def">Student friendly definitions for the word.</span></div>
+            <div class="vocab-entry"><span class="vocab-word">Injustice</span><span class="vocab-def">Student friendly definition for the word.</span></div>
+            <div class="vocab-entry"><span class="vocab-word">Resilience</span><span class="vocab-def">Student friendly definition for the word.</span></div>
+          </div>
+          <!-- Close Reading Vocabulary -->
+          <div>
+            <p class="vocab-col-title">Close Reading Vocabulary</p>
+            <p class="vocab-empty">Not available for this lesson</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Material List & Routines -->
+    <section class="section">
+      <div class="materials-grid">
+        <div class="materials-card">
+          <p class="materials-title">Material list</p>
+          <ul class="materials-list">
+            <li>Writing tools</li>
+            <li>Organization supplies</li>
+            <li>Technology</li>
+            <li>Craft essentials</li>
+            <li>Carrying supplies</li>
+            <li>Planner</li>
+          </ul>
+        </div>
+        <div class="materials-card">
+          <p class="materials-title">Routines &amp; Protocols</p>
+          <ul class="materials-list">
+            <li>Writing tools</li>
+            <li>Organization supplies</li>
+            <li>Technology</li>
+            <li>Craft essentials</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Lesson Sequence -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Lesson Sequence</h2>
+        <button class="expand-all" onclick="toggleAll()">
+          Expand all
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+      </div>
+      <div class="accordion">
+
+        <div class="accordion-item" id="acc-1">
+          <div class="accordion-header" onclick="toggleAccordion('acc-1')">
+            <div class="accordion-left">
+              <span class="accordion-title">1. Launch</span>
+              <span class="accordion-time">5 min</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            Lesson sequence content for this phase goes here. Students begin with a warm-up activity to activate prior knowledge before diving into the main reading.
+          </div>
+        </div>
+
+        <div class="accordion-item" id="acc-2">
+          <div class="accordion-header" onclick="toggleAccordion('acc-2')">
+            <div class="accordion-left">
+              <span class="accordion-title">2. Literacy Lab</span>
+              <span class="accordion-time">40 min</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            Lesson sequence content for this phase goes here. Independent reading and annotation work focused on close reading skills.
+          </div>
+        </div>
+
+        <div class="accordion-item" id="acc-3">
+          <div class="accordion-header" onclick="toggleAccordion('acc-3')">
+            <div class="accordion-left">
+              <span class="accordion-title">3. Learning in Action</span>
+              <span class="accordion-time">30 min</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            Lesson sequence content for this phase goes here. The core instructional block where students engage with the primary text and complete guided practice activities.
+          </div>
+        </div>
+
+        <div class="accordion-item" id="acc-4">
+          <div class="accordion-header" onclick="toggleAccordion('acc-4')">
+            <div class="accordion-left">
+              <span class="accordion-title">4. Look Back</span>
+              <span class="accordion-time">5 min</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            Lesson sequence content for this phase goes here. Students reflect on learning objectives and complete an exit ticket to assess understanding.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Lesson Texts -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Lesson Texts</h2>
+      </div>
+      <div class="texts-grid">
+        <!-- Newsela Text card -->
+        <div class="text-card">
+          <div class="text-card-info">
+            <div class="text-card-info-top">
+              <p class="text-card-type">Newsela text</p>
+              <p class="text-card-title">'They wanted tandoori chicken': Australia's slow embrace of regional Indian cuisine</p>
+            </div>
+            <a href="view.html" class="text-card-link">Read text</a>
+          </div>
+          <div class="text-book-thumb">
+            <img src="https://picsum.photos/seed/book1/120/120" alt="Text thumbnail">
+          </div>
+        </div>
+        <!-- Novel card -->
+        <div class="text-card">
+          <div class="text-card-info">
+            <div class="text-card-info-top">
+              <p class="text-card-type">Novel</p>
+              <p class="text-card-title">'They wanted tandoori chicken': Australia's slow embrace of regional Indian cuisine</p>
+              <p class="text-card-author">J. D. Salinger</p>
+            </div>
+            <a href="#" class="text-card-link">
+              Open PDF
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg>
+            </a>
+          </div>
+          <div class="text-book-thumb">
+            <img src="https://picsum.photos/seed/book2/120/120" alt="Novel cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Lesson Materials -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Lesson Materials</h2>
+      </div>
+      <div class="lm-grid">
+
+        <!-- Teacher Materials -->
+        <div class="lm-col">
+          <div class="lm-col-header">
+            <div class="lm-col-title-group">
+              <span class="lm-title">Teacher Materials</span>
+              <span class="lm-count">(12 total)</span>
+            </div>
+            <a href="#" class="lm-download-link">
+              Download all Teacher Materials
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+            </a>
+          </div>
+          <div class="lm-files">
+            <div class="lm-row">
+              <div class="lm-icon">
+                <!-- PDF icon SVG -->
+                <!-- PDF file icon: page shape with folded corner + red PDF badge -->
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Page body -->
+                  <path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/>
+                  <!-- Folded corner -->
+                  <path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/>
+                  <!-- Red PDF badge -->
+                  <rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/>
+                  <text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text>
+                </svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">
+                  Preview
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Materials -->
+        <div class="lm-col">
+          <div class="lm-col-header">
+            <div class="lm-col-title-group">
+              <span class="lm-title">Student Materials</span>
+              <span class="lm-count">(12 total)</span>
+            </div>
+            <a href="#" class="lm-download-link">
+              Download all Student Materials
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+            </a>
+          </div>
+          <div class="lm-files">
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+            <div class="lm-row">
+              <div class="lm-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4C8 2.89543 8.89543 2 10 2H26L34 10V36C34 37.1046 33.1046 38 32 38H10C8.89543 38 8 37.1046 8 36V4Z" fill="#F8F9FA" stroke="#E1E3E5" stroke-width="1"/><path d="M26 2L34 10H28C26.8954 10 26 9.10457 26 8V2Z" fill="#E1E3E5"/><rect x="6" y="22" width="20" height="12" rx="3" fill="#DD3636"/><text x="16" y="31.5" text-anchor="middle" font-size="7.5" font-weight="700" fill="white" font-family="sans-serif">PDF</text></svg>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <p class="lm-name">Lorem ipsum dolor sti amet dolor</p>
+                <p class="lm-size">153kb</p>
+              </div>
+              <div class="lm-actions">
+                <a href="#" class="lm-preview-link">Preview <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11zm7.646-10.854a.5.5 0 0 1 .708-.708l3 3a.5.5 0 0 1-.708.708L9.5 3.793V12.5a.5.5 0 0 1-1 0V3.793l-1.646 1.647a.5.5 0 0 1-.708-.708l3-3z"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <a href="#">Terms of use</a>
+  <span class="footer-sep">·</span>
+  <a href="#">Privacy policy</a>
+  <span class="footer-sep">·</span>
+  <a href="#">CA Privacy policy</a>
+  <span class="footer-sep">·</span>
+  <a href="#">Accessibility</a>
+  <span class="footer-sep">·</span>
+  <span>© 2024 Newsela Inc.</span>
+</footer>
+
+<script>
+  /* ── Sidebar nav ── */
+  function toggleUnit(header) {
+    const unit = header.closest('.nav-unit');
+    const children = unit.querySelector('.nav-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) {
+      header.classList.add('active-unit');
+    } else {
+      header.classList.remove('active-unit');
+    }
+  }
+
+  function toggleRange(rangeRow) {
+    const group = rangeRow.closest('.nav-range-group');
+    const children = group.querySelector('.nav-range-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) {
+      rangeRow.classList.add('range-open');
+    } else {
+      rangeRow.classList.remove('range-open');
+    }
+  }
+
+  function setActive(lessonEl) {
+    document.querySelectorAll('.nav-lesson.active').forEach(el => el.classList.remove('active'));
+    lessonEl.classList.add('active');
+  }
+
+  /* ── Accordion (lesson pacing/materials) ── */
+  function toggleAccordion(id) {
+    const item = document.getElementById(id);
+    item.classList.toggle('open');
+  }
+
+  let allExpanded = false;
+  function toggleAll() {
+    const items = document.querySelectorAll('.accordion-item');
+    allExpanded = !allExpanded;
+    items.forEach(item => {
+      if (allExpanded) item.classList.add('open');
+      else item.classList.remove('open');
+    });
+    const btn = document.querySelector('.expand-all');
+    btn.innerHTML = allExpanded
+      ? 'Collapse all <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)"><polyline points="6 9 12 15 18 9"></polyline></svg>'
+      : 'Expand all <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anchor Text: Supper Clubs — Newsela Threads &amp; Themes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --core-500: #0A6EFA;
+      --core-50: #CCE1FF;
+      --core-700: #082C88;
+      --neutral-700: #1D1D1D;
+      --neutral-600: #424147;
+      --neutral-500: #5B5A61;
+      --neutral-400: #77767A;
+      --neutral-300: #8D8D96;
+      --neutral-200: #A8AAB0;
+      --neutral-100: #E1E3E5;
+      --neutral-50: #F0F1F2;
+      --purple-600: #720780;
+      --dark-grey-500: #333333;
+      --grey-50: #DDDDDD;
+    }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--neutral-700);
+      background: var(--white);
+      min-width: 1440px;
+      font-size: 14px;
+      line-height: 1.71;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--white);
+      border-bottom: 1px solid var(--neutral-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 100;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-logo a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-logo img {
+      height: 32px;
+      display: block;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--core-500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ── PAGE BODY ── */
+    .page-body {
+      padding-top: 64px;
+      min-height: 100vh;
+    }
+
+    /* ── 3-COLUMN LAYOUT ── */
+    .page-layout {
+      display: flex;
+      height: calc(100vh - 64px);
+      overflow: hidden;
+    }
+
+    /* ── LEFT NAV ── */
+    .left-nav {
+      width: 280px;
+      flex-shrink: 0;
+      background: white;
+      border-right: 1px solid #E1E3E5;
+      padding: 24px 16px;
+      overflow-y: auto;
+    }
+
+    .left-nav .back-link {
+      display: block;
+      color: #0A6EFA;
+      font-size: 13px;
+      text-decoration: none;
+      margin-bottom: 24px;
+      padding: 0;
+      font-weight: 400;
+    }
+
+    .lesson-seq-heading {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #5B5A61;
+      margin-bottom: 12px;
+    }
+
+    .lesson-step {
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #5B5A61;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+
+    .lesson-step.active {
+      background: #CCE1FF;
+      color: #0A6EFA;
+      font-weight: 600;
+    }
+
+    /* ── ARTICLE AREA ── */
+    .article-column {
+      flex: 1;
+      background: var(--white);
+      padding: 16px 56px 80px 56px;
+      overflow-y: auto;
+    }
+
+    /* ── RIGHT PANEL (Assignment builder) ── */
+    .right-panel {
+      width: 360px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-left: 1px solid #e1e3e5;
+      overflow-y: auto;
+    }
+
+    .right-panel::-webkit-scrollbar { width: 4px; }
+    .right-panel::-webkit-scrollbar-track { background: transparent; }
+    .right-panel::-webkit-scrollbar-thumb { background: var(--neutral-100); border-radius: 4px; }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--core-500);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      padding: 12px 0;
+      transition: opacity 0.15s;
+    }
+
+    .back-link:hover { opacity: 0.75; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .breadcrumb a,
+    .breadcrumb-item {
+      color: var(--neutral-600);
+      text-decoration: underline;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.33;
+      white-space: nowrap;
+    }
+
+    .breadcrumb a:last-child,
+    .breadcrumb-current {
+      text-decoration: none;
+      color: var(--neutral-600);
+    }
+
+    .breadcrumb-sep {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      color: var(--neutral-400);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    /* ── ARTICLE HEADER ── */
+    .article-category {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--neutral-700);
+      margin-bottom: 8px;
+      line-height: 1.33;
+    }
+
+    .article-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--neutral-700);
+      margin-bottom: 0;
+      max-width: 628px;
+      text-transform: capitalize;
+    }
+
+    /* ── ARTICLE META (byline) ── */
+    .article-meta {
+      margin-top: 24px;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.71;
+      color: var(--neutral-600);
+      white-space: nowrap;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--neutral-500);
+      line-height: 1.33;
+    }
+
+    .meta-divider-h {
+      width: 100%;
+      height: 1px;
+      background: var(--neutral-700);
+      opacity: 0.16;
+    }
+
+    .meta-divider-v {
+      width: 1px;
+      height: 24px;
+      background: var(--neutral-700);
+      opacity: 0.16;
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+
+    /* ── RECOMMENDATION ROW ── */
+    .rec-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .rec-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--purple-600);
+      text-decoration: none;
+      transition: opacity 0.15s;
+      font-family: inherit;
+    }
+
+    .rec-btn:hover { opacity: 0.75; }
+
+    .rec-btn svg {
+      flex-shrink: 0;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero-image-wrap {
+      margin-bottom: 16px;
+      border-radius: 32px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .hero-image-wrap img {
+      display: block;
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      margin-bottom: 24px;
+      line-height: 1.71;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.78;
+      color: var(--neutral-700);
+    }
+
+    .article-body p {
+      margin-bottom: 0;
+    }
+
+    .article-body p + p {
+      margin-top: 1em;
+    }
+
+    .article-body .spacer {
+      display: block;
+      height: 1em;
+    }
+
+    .article-body h2 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      margin: 24px 0 0;
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+
+    /* ── INLINE PULL QUOTE (side-by-side layout) ── */
+    .article-side-section {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+      margin: 24px 0 0;
+    }
+
+    .article-quote-col {
+      flex: 1;
+      min-width: 0;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.78;
+      color: var(--neutral-700);
+    }
+
+    .article-image-col {
+      flex: 0 0 364px;
+      width: 364px;
+    }
+
+    .article-image-col .side-img {
+      display: block;
+      width: 364px;
+      height: 438px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .article-image-col .side-caption {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.71;
+      margin-top: 16px;
+    }
+
+    /* ── RIGHT PANEL ── */
+    .rp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 16px;
+      height: 72px;
+      border-bottom: 1px solid #ddd;
+      background: var(--white);
+      flex-shrink: 0;
+    }
+
+    .rp-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rp-header-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rp-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark-grey-500);
+      line-height: 1.33;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .rp-close-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 8px;
+      color: var(--neutral-500);
+      transition: background 0.15s;
+    }
+
+    .rp-close-btn:hover { background: var(--neutral-50); }
+
+    /* ── ACCORDION ── */
+    .accordion {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .accordion-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 0;
+      user-select: none;
+    }
+
+    .accordion-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .accordion-chevron {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      color: var(--neutral-500);
+      transition: transform 0.2s;
+    }
+
+    .accordion-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .accordion-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--neutral-700);
+      opacity: 0.16;
+      margin-top: 16px;
+    }
+
+    /* Expanded content */
+    .accordion-content {
+      display: none;
+      padding-top: 8px;
+    }
+
+    .accordion-content.open {
+      display: block;
+    }
+
+    /* ── RACE CONTENT ── */
+    .race-content {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--neutral-600);
+    }
+
+    .race-content p {
+      margin-bottom: 0;
+    }
+
+    .race-content p + p {
+      margin-top: 0.5em;
+    }
+
+    .race-content b, .race-content strong {
+      font-weight: 700;
+      color: var(--neutral-600);
+    }
+
+    .race-content ul {
+      padding-left: 20px;
+      margin: 4px 0 8px;
+    }
+
+    .race-content ul li {
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* RACE grid table */
+    .race-grid {
+      width: 100%;
+      border: 1px solid var(--neutral-600);
+      border-collapse: collapse;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    .race-grid tr {
+      border-bottom: 1px solid var(--neutral-600);
+    }
+
+    .race-grid tr:last-child {
+      border-bottom: none;
+    }
+
+    .race-grid td {
+      padding: 16px;
+      vertical-align: top;
+      line-height: 1.5;
+      color: var(--neutral-600);
+      border-right: 1px solid var(--neutral-600);
+    }
+
+    .race-grid td:last-child {
+      border-right: none;
+    }
+
+    .race-grid td.key-cell {
+      width: 146px;
+      font-weight: 700;
+      color: var(--neutral-600);
+      flex-shrink: 0;
+    }
+
+    /* ── PURPOSE / SUPPORT SECTIONS ── */
+    .section-block {
+      margin-top: 16px;
+    }
+
+    .section-block-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--neutral-600);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .section-block-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    .section-block-body ul {
+      padding-left: 20px;
+      margin: 4px 0;
+    }
+
+    .section-block-body li {
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header-logo">
+      <a href="index.html">
+        <img src="../Reference images/Logo.png" alt="Newsela" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-size:20px;font-weight:700;color:#0A6EFA;\'>newsela</span>';" />
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="avatar-wrap">
+        <div class="avatar">TM</div>
+        <!-- chevron down -->
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:#77767A;">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── PAGE BODY ── -->
+  <div class="page-body">
+  <div class="page-layout">
+
+    <!-- ── LEFT NAV ── -->
+    <div class="left-nav">
+      <a href="lesson-guide.html" class="back-link">← Back to page</a>
+      <div class="lesson-seq-heading">Lesson Sequence</div>
+      <div class="lesson-steps">
+        <div class="lesson-step">1. Launch</div>
+        <div class="lesson-step">2. Literacy Lab</div>
+        <div class="lesson-step active">3. Learning in Action</div>
+        <div class="lesson-step">4. Look Back</div>
+      </div>
+    </div>
+
+    <!-- ── ARTICLE COLUMN ── -->
+    <div class="article-column">
+
+      <!-- Back link -->
+      <a href="lesson-guide.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 12L6 8l4-4" stroke="#0A6EFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Return to lesson page
+      </a>
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-sep">
+          <!-- forward slash icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-8" stroke="#77767A" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <a href="course.html" class="breadcrumb-item">ELA Core 8th Grade</a>
+        <span class="breadcrumb-sep">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-8" stroke="#77767A" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <a href="unit.html" class="breadcrumb-item">Unit 3</a>
+        <span class="breadcrumb-sep">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-8" stroke="#77767A" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <a href="lesson-guide.html" class="breadcrumb-item">Lesson 5</a>
+        <span class="breadcrumb-sep">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12l4-8" stroke="#77767A" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="breadcrumb-current">Newsela text</span>
+      </nav>
+
+      <!-- Article header -->
+      <div class="article-category">short-form text</div>
+      <h1 class="article-title">These Supper Clubs Are Using Food To Cross Cultural Divides</h1>
+
+      <!-- Byline / Meta -->
+      <div class="article-meta">
+        <div class="meta-row">
+          <span class="meta-label">By</span>
+          <span>The Smithsonian Institution, adapted by Newsela staff</span>
+        </div>
+        <div class="meta-divider-h"></div>
+        <div class="meta-row">
+          <span class="meta-label">Recommended For</span>
+          <span>Upper Elementary School – Middle School</span>
+        </div>
+        <div class="meta-divider-h"></div>
+        <div class="meta-row" style="gap:16px;">
+          <span class="meta-row" style="gap:8px;">
+            <span class="meta-label">Words</span>
+            <span>1107</span>
+          </span>
+          <div class="meta-divider-v"></div>
+          <span class="meta-row" style="gap:8px;">
+            <span class="meta-label">Text Level</span>
+            <span>9</span>
+          </span>
+          <div class="meta-divider-v"></div>
+          <span class="meta-row" style="gap:8px;">
+            <span class="meta-label">Published</span>
+            <span>4/27/2020</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Recommendation buttons -->
+      <div class="rec-row">
+        <a href="#" class="rec-btn">
+          <!-- link icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6.5 9.5l3-3M4.5 11.5a3 3 0 010-4.243L6.086 5.671A3 3 0 0110.329 9.914L8.743 11.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          Share
+        </a>
+        <a href="#" class="rec-btn">
+          <!-- text-height icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><text x="2" y="13" font-size="11" font-weight="700" fill="currentColor">A</text><text x="8" y="11" font-size="8" font-weight="700" fill="currentColor">A</text></svg>
+          Text size
+        </a>
+        <a href="#" class="rec-btn">
+          <!-- headphones icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 9V8a5.5 5.5 0 0111 0v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><rect x="1.5" y="9" width="3" height="4" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="11.5" y="9" width="3" height="4" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+          Listen
+        </a>
+        <a href="#" class="rec-btn">
+          <!-- paragraph/count icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h10M3 12h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          Count
+        </a>
+        <a href="#" class="rec-btn" style="color:#54005C;">
+          <!-- citation icon -->
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 7.5h8M4 10h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><rect x="2" y="2.5" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+          Citation
+        </a>
+      </div>
+
+      <!-- Hero image -->
+      <div class="hero-image-wrap">
+        <img src="http://localhost:3845/assets/6b5bf9607fd65fadc182049500d8b9ac661b0b85.png"
+             onerror="this.src='https://picsum.photos/seed/supper/900/390'"
+             alt="Maha al-Obaid teaches her Immersion workshop for League of Kitchens" />
+      </div>
+      <p class="image-caption">Maha al-Obaid teaches her Immersion workshop for League of Kitchens. Al-Obaid is from Baghdad, Iraq. They are cooking lamb biryani. Photo: Brakethrough Media</p>
+
+      <!-- Article body -->
+      <div class="article-body">
+
+        <p>At a home in Tupelo, Mississippi, a small, mixed group gathered in the kitchen. They worked alongside their host, Mary Ann Plasencia, to make pineapple chutney and empanadas, which are baked or fried pastries with fillings. As Plasencia taught a few of them how to fold and then press together the edges of the empanadas using the tines of a fork, she imparted a treasured aspect of her Cuban heritage.</p>
+        <p>&nbsp;</p>
+        <p>The evening was organized by Cooking as a First Language, a nonprofit designed to break down cultural barriers over food. A growing number of cooking classes and supper clubs are using food to bring together U.S.-born residents with immigrants, refugees and temporary transplants. The groups meet regularly, in a comfortable environment, which is usually someone's home or a small commercial kitchen.</p>
+        <p>&nbsp;</p>
+        <p>A key part of each evening is that the host and the guests cook and dine together. This counteracts what Laurie Hart, an anthropologist at the University of California, Los Angeles, calls a "pre-established contract" that usually exists between the two. An anthropologist studies humans in past and present societies.</p>
+        <p>"This does away with any former structures," says Hart, "and creates a neutral space among all of the participants."</p>
+        <p>&nbsp;</p>
+
+        <h2>Trend Started In Major Cities</h2>
+
+        <p>The trend started in major city centers. As a descendant of Hungarian Jews and the daughter of a Korean immigrant, artist Lisa Gross was well aware of what the diversity of her native New York City offered her. Diversity is a range of different races, genders, ages and more. She noted that the majority of culture exchanges were often service-based, in locations like a neighborhood market.</p>
+        <p>&nbsp;</p>
+        <p>Gross identified a need for balance in those interactions, where immigrant and refugee women could be equal with those who would otherwise be clients. In her view, sharing knowledge about food and conversing across cultures were as important as the goods being exchanged. As was the chance to offer a source of income to disadvantaged groups in the process.</p>
+        <p>&nbsp;</p>
+        <p>She launched New York City's The League of Kitchens in 2013. Small groups gather in the homes of immigrant women to learn how to make regional dishes and about their culture in the process. The organization made the news almost immediately.</p>
+        <p>&nbsp;</p>
+
+        <h2>Forming Across-Border Friendships Over Food</h2>
+
+        <p>The organization has since hosted more than 1,000 dinners, runs about 16 to 20 workshops per month and employs 12 instructors from countries like Lebanon, India and Nepal. Soon, similar workshops sprung up in other cities, including Los Angeles, California, and Seattle, Washington. More recently, this idea of forming across-border friendships over food has spread to less-populated cities and communities as well.</p>
+
+        <!-- Side-by-side quote + image section -->
+        <div class="article-side-section">
+          <div class="article-quote-col">
+            <p>"[Such programs] stem from a desire to create a safe space outside of major commitments, like marriage and family," says Hart, who specializes in globalization and migration. "Food sharing is a very fundamental social bond, and one that's always been instrumental in bringing communities together in everyday life."</p>
+          </div>
+          <div class="article-image-col">
+            <img class="side-img"
+                 src="http://localhost:3845/assets/d17f2d43f4ddbe17076257e04bdae5dbe3d5a8e7.png"
+                 onerror="this.src='https://picsum.photos/seed/kitchen/364/438'"
+                 alt="Aicha Laabid pours Moroccan mint tea" />
+            <p class="side-caption">Aicha Laabid pours Moroccan mint tea for a Moroccan cooking class she was teaching for Cooking as a First Language. Laabid grew up in Morocco and now lives in Tupelo, Mississippi. Photo: Lauren McElwain</p>
+          </div>
+        </div>
+
+        <h2>In Kitchen, Goals Were The Same</h2>
+
+        <p>"It was really their idea to begin with," says McElwain. "The women — some of whom had kids in school with my own and others who were attending local ELS (English Language School) classes — had seen my food blog and asked me to teach them some southern recipes that are popular within our community." McElwain quickly learned that while their English was limited, cooking was a language they could share. "Once we were in the kitchen together," she says, "our goals were the same."</p>
+        <p>&nbsp;</p>
+        <p>From there, they planned another dinner, this time a sushi-making night in which the Japanese women did the instructing. "Once I posted pictures on social media, it blew up," says McElwain. "A local friend who's of Indian descent reached out to me and said, 'I'd love to host a dinner at my house.' Then another woman reached out and said, 'I moved here from Mexico and can host a dinner for you, too.'"</p>
+        <p>&nbsp;</p>
+        <p>The nonprofit has since hosted Moroccan, Bangladeshi, Ecuadorian and South African dinners, among others, all led by a home cook who's either from one of those countries or has a special connection to that particular heritage. For example, Plasencia hails from Florida, but both of her parents grew up in Cuba. She grew up speaking Spanish at home and dining on traditional family recipes steeped in Cuban culture, like fried croquettes and ceviche.</p>
+
+      </div>
+    </div>
+
+    <!-- ── RIGHT PANEL (Assignment builder) ── -->
+    <aside class="right-panel">
+
+      <!-- Panel header -->
+      <div class="rp-header">
+        <div class="rp-header-left">
+          <div class="rp-header-icon">
+            <!-- assignments icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="2" stroke="#424147" stroke-width="1.5"/>
+              <path d="M7 9h10M7 13h7" stroke="#424147" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M9 2v4M15 2v4" stroke="#424147" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="rp-title">Lesson 5 Sequence</span>
+        </div>
+        <button class="rp-close-btn" onclick="this.closest('.right-panel').style.display='none'">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 4l8 8M12 4l-8 8" stroke="#5B5A61" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Accordion -->
+      <div class="accordion">
+
+        <!-- 1. Launch — collapsed -->
+        <div class="accordion-item" id="acc-1">
+          <div class="accordion-header" onclick="toggleAccordion(1)">
+            <span class="accordion-title">1. Launch</span>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="accordion-content" id="acc-content-1">
+            <div class="race-content">
+              <p>Students will launch the lesson by connecting to prior knowledge about community and belonging.</p>
+            </div>
+          </div>
+          <div class="accordion-divider"></div>
+        </div>
+
+        <!-- 2. Literacy Lab — expanded (open by default) -->
+        <div class="accordion-item" id="acc-2">
+          <div class="accordion-header" onclick="toggleAccordion(2)">
+            <span class="accordion-title">2. Literacy Lab</span>
+            <svg class="accordion-chevron open" id="chevron-2" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="accordion-content open" id="acc-content-2">
+            <div class="race-content">
+              <p><strong>RACE Strategy</strong></p>
+              <p>Explain to students that today, they'll be using the RACE strategy to respond to a question by writing an explanatory paragraph with evidence. <strong>RACE</strong> stands for "<strong>R</strong>estate the question" + "<strong>A</strong>nswer the question" + "<strong>C</strong>ite evidence" + "<strong>E</strong>xplain your answer."</p>
+              <p>&nbsp;</p>
+              <p><strong>Display the RACE writing strategy graphic organizer:</strong></p>
+              <p>&nbsp;</p>
+              <p><strong>RACE = Restate + Answer + Cite + Explain</strong></p>
+              <p>&nbsp;</p>
+              <p><strong>R – Restate the question</strong></p>
+              <ul>
+                <li>Restate the question as a declarative sentence</li>
+                <li>Establishes the main topic of the paragraph</li>
+              </ul>
+              <p>&nbsp;</p>
+              <p><strong>A – Answer the question</strong></p>
+              <ul>
+                <li>Provide an answer to the question</li>
+                <li>Tells the reader what to expect in the paragraph</li>
+              </ul>
+              <p>&nbsp;</p>
+              <p><strong>C – Cite evidence from the texts</strong></p>
+              <ul>
+                <li>Specific quote or paraphrase from the texts</li>
+                <li>Must be introduced smoothly (not just dropped in)</li>
+              </ul>
+              <p>&nbsp;</p>
+              <p><strong>E – Explain your answer</strong></p>
+              <ul>
+                <li>Tells what the evidence shows</li>
+                <li>Points to specific words/phrases</li>
+                <li>Makes the connection explicit for the reader</li>
+              </ul>
+              <p>&nbsp;</p>
+              <p>Model jotting notes that align with the RACE strategy using a graphic organizer to respond to the sample question "What are the key events of related to Bloody Sunday?":</p>
+
+              <!-- RACE grid -->
+              <table class="race-grid">
+                <tr>
+                  <td class="key-cell">Restate</td>
+                  <td>The question asks about the key events related to Bloody Sunday.</td>
+                </tr>
+                <tr>
+                  <td class="key-cell">Answer</td>
+                  <td>March: Book One says the troopers declare "This is an unlawful assembly!" and order marchers to "DISPERSE" (p. 6)<br><br>"Confrontations for Justice" says in the third paragraph second paragraph of the introductory section that marchers were attacked with "...clubs, bullwhips, and tear gas."</td>
+                </tr>
+                <tr>
+                  <td class="key-cell">Cite evidence</td>
+                  <td>The marchers begin their peaceful protest for voting rights, walking across the Edmund Pettus Bridge in Selma. The Alabama state troopers order the marchers to stop, to disperse, and dismiss the marchers' request to communicate with the mayor. The troopers then at the Edmund Pettus Bridge and the troopers' advance on the marchers and physically attack them with billy clubs, whips, and tear gas.</td>
+                </tr>
+                <tr>
+                  <td class="key-cell">Explain</td>
+                  <td>This evidence shows that the key events of Bloody Sunday include a peaceful march for voting rights and the violent suppression of that march by Alabama law enforcement.</td>
+                </tr>
+              </table>
+
+              <div class="section-block">
+                <p class="section-block-title">Purpose:</p>
+                <div class="section-block-body">
+                  <p>Support students in using academic explanatory language within each part of the RACE strategy.</p>
+                  <p>&nbsp;</p>
+                  <p><strong>Language Focus by RACE Component:</strong></p>
+                  <ul>
+                    <li>Restate / Answer: clear declarative statements</li>
+                    <li>Cite: reporting verbs (states, explains, recounts)</li>
+                    <li>Explain: cause–effect connectors (because, as a result, therefore)</li>
+                  </ul>
+                  <p>&nbsp;</p>
+                  <p><strong>Teacher Modeling:</strong></p>
+                  <ul>
+                    <li>Name the language move while modeling:
+                      <ul style="padding-left:20px; list-style:disc;">
+                        <li>Here I cite the text using the word <em>states</em>.</li>
+                        <li>Here I explain the connection using the phrase <em>as a result</em>.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p>&nbsp;</p>
+                  <p><strong>Generative Supports:</strong></p>
+                  <ul>
+                    <li>The text states ___, which shows ___.</li>
+                    <li>Because ___ happened, ___ followed.</li>
+                    <li>As a result, the situation changed when ___.</li>
+                  </ul>
+                  <p>&nbsp;</p>
+                  <p><strong>Formative Look-Fors:</strong></p>
+                  <ul>
+                    <li>Students distinguish evidence from the explanation.</li>
+                    <li>Students attempt causal language rather than retelling.</li>
+                  </ul>
+                  <p>&nbsp;</p>
+                  <p><strong>Connection to Today's Learning:</strong></p>
+                  <p>Explain to students that the performance task for this unit will require them to draw evidence from multiple sources. Today, they will practice drawing evidence from two texts to support their explanations.</p>
+                  <p>&nbsp;</p>
+                  <p><strong>For Additional Student Support</strong></p>
+                  <p><strong>Writing Scaffold</strong></p>
+                  <p><strong>If students need more support applying the RACE strategy:</strong> Use a non-example and guide students to unpack why it does not demonstrate high-quality RACE writing. Non-example: "Bloody Sunday was dangerous. The marchers were hurt. This shows it was dangerous."</p>
+                  <p><strong>What's missing?</strong> The writer does not cite evidence from either text, does not introduce evidence smoothly, and the explanation repeats the same idea instead of showing how specific details prove the claim.</p>
+                  <p><strong>Strong Explanation:</strong></p>
+                  <ul>
+                    <li>Points to specific words/phrases from evidence (e.g., "DISPERSE," "advance," "tear gas")</li>
+                    <li>Explains what those words/phrases reveal about actions and outcomes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-divider"></div>
+        </div>
+
+        <!-- 3. Learning in Action — collapsed -->
+        <div class="accordion-item" id="acc-3">
+          <div class="accordion-header" onclick="toggleAccordion(3)">
+            <span class="accordion-title">3. Learning in Action</span>
+            <svg class="accordion-chevron" id="chevron-3" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="accordion-content" id="acc-content-3">
+            <div class="race-content">
+              <p>Students apply the RACE strategy independently using the anchor text.</p>
+            </div>
+          </div>
+          <div class="accordion-divider"></div>
+        </div>
+
+        <!-- 4. Look Back — collapsed -->
+        <div class="accordion-item" id="acc-4">
+          <div class="accordion-header" onclick="toggleAccordion(4)">
+            <span class="accordion-title">4. Look Back</span>
+            <svg class="accordion-chevron" id="chevron-4" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="accordion-content" id="acc-content-4">
+            <div class="race-content">
+              <p>Students reflect on their learning and share out with the class.</p>
+            </div>
+          </div>
+          <div class="accordion-divider"></div>
+        </div>
+
+      </div>
+    </aside>
+  </div><!-- /page-layout -->
+  </div><!-- /page-body -->
+
+  <script>
+    function toggleAccordion(num) {
+      const content = document.getElementById('acc-content-' + num);
+      const chevron = document.querySelector('#acc-' + num + ' .accordion-chevron');
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      if (chevron) chevron.classList.toggle('open', !isOpen);
+    }
+  </script>
+
+</body>
+</html>

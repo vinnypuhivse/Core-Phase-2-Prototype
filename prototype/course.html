@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsela — ELA Core 8th Grade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-beige: #faf9f5;
+      --white: #ffffff;
+      --core-500: #0A6EFA;
+      --core-50: #CCE1FF;
+      --neutral-700: #1D1D1D;
+      --neutral-600: #424147;
+      --neutral-500: #5B5A61;
+      --neutral-400: #77767A;
+      --neutral-300: #8D8D96;
+      --neutral-200: #A8AAB0;
+      --neutral-100: #E1E3E5;
+      --neutral-50: #F0F1F2;
+      --purple-700: #54005C;
+      --purple-600: #720780;
+      --purple-500: #8B1EA4;
+      --purple-50: #E7DCF6;
+    }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-beige);
+      color: var(--neutral-700);
+      min-width: 960px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid #E1E3E5;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: color 0.15s;
+      position: relative;
+    }
+
+    .nav-link:hover { color: #1D1D1D; }
+
+    .nav-link.active {
+      color: #0A6EFA;
+      font-weight: 400;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #0A6EFA;
+      border-radius: 2px 2px 0 0;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: #E1E3E5;
+      margin: 0 8px;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0A6EFA;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── PAGE LAYOUT ─── */
+    .page-layout {
+      display: flex;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* ─── LEFT SIDEBAR ─── */
+    .sidebar {
+      width: 284px;
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--neutral-100);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    /* Thumbnail: aspect 268/80, rounded-16px */
+    .sidebar-thumb-wrap {
+      width: 268px;
+      height: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .sidebar-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Course label: 16px bold, px-8 py-4 */
+    .sidebar-course-label {
+      display: flex;
+      align-items: center;
+      width: 268px;
+      padding: 4px 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1.5;
+    }
+
+    /* Unit list items: 14px, pr-8 py-4, gap-4 */
+    /* ── Sidebar nav tree ── */
+    .nav-tree { list-style: none; }
+    .nav-unit { margin-bottom: 0; }
+    .nav-unit-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 32px;
+      padding: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-600);
+      transition: background 0.12s;
+      user-select: none;
+    }
+    .nav-unit-header:hover { background: var(--neutral-50); }
+    .nav-unit-header.active-unit { color: var(--core-500); }
+    .nav-unit-chevron {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-unit-chevron svg { transition: transform 0.2s ease; }
+    .nav-unit-header.active-unit .nav-unit-chevron svg { transform: rotate(90deg); }
+    .nav-children { list-style: none; }
+    .nav-range-group { list-style: none; }
+    .nav-range-children { list-style: none; }
+    .nav-range {
+      display: flex; align-items: center; height: 32px;
+      padding: 4px 4px 4px 28px; gap: 4px;
+      cursor: pointer; font-size: 14px; font-weight: 500;
+      color: var(--neutral-600); border-radius: 6px;
+      transition: background 0.12s; user-select: none;
+    }
+    .nav-range:hover { background: var(--neutral-50); }
+    .nav-range-chevron {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-range-chevron svg { transition: transform 0.2s ease; }
+    .nav-range.range-open .nav-range-chevron svg { transform: rotate(90deg); }
+    .nav-lesson {
+      display: flex; align-items: center; height: 32px;
+      padding: 4px 4px 4px 52px; font-size: 14px;
+      color: var(--neutral-600); cursor: pointer; border-radius: 6px;
+      border-left: 3px solid transparent; transition: background 0.12s; font-weight: 400;
+    }
+    .nav-lesson:hover { background: var(--neutral-50); }
+    .nav-lesson.active {
+      background: var(--core-50); color: var(--core-500);
+      font-weight: 600; border-left: 3px solid var(--core-500);
+      padding-left: 49px; border-radius: 6px;
+    }
+
+    /* ─── MAIN BODY ─── */
+    /* Body: p-32, gap-40 between sections */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-bottom: 80px;
+    }
+
+    /* ─── HERO IMAGE ─── */
+    /* aspect 1092/322, rounded-16 */
+    .hero-img-wrap {
+      width: 100%;
+      aspect-ratio: 1092 / 322;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─── H1 ─── */
+    /* Noto Serif 40px, #1D1D1D, leading 1.2 */
+    .page-h1 {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 40px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+    }
+
+    /* ─── COURSE DESCRIPTION BLOCK ─── */
+    /* flex-col gap-24 */
+    .course-description {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Overview section: flex-col gap-8 */
+    .overview-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Circular Bold 24px heading */
+    .section-h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1.33;
+    }
+
+    /* Circular Book 16px body, #424147 */
+    .body-text {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    /* Key Focus + Arcs: 2-col flex gap-24 */
+    .two-col-block {
+      display: flex;
+      gap: 24px;
+    }
+
+    .two-col-block > div {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ─── UNIT CARDS CONTAINER ─── */
+    /* flex-col gap-24 */
+    .units-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ─── UNIT CARD ─── */
+    /* white, rounded-24, p-24, flex-col gap-24 */
+    .unit-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Unit card header: title + duration */
+    .unit-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Unit title: Noto Serif 32px, #1D1D1D */
+    .unit-title {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Duration: Circular 14px, purple-500 */
+    .unit-duration {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-500);
+      line-height: 1.71;
+    }
+
+    /* Unit content: 2-col grid, gap-32 */
+    .unit-content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    /* Left col: flex-col gap-32 */
+    .unit-copy-col {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Topic/EQ block: flex-col gap-8 */
+    .unit-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Topic/EQ header row: flex gap-8 items-center */
+    .unit-info-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Illustration icon: 40x40 */
+    .illus-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .illus-icon img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    /* Section label: Noto Serif 20px */
+    .unit-info-label {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      text-transform: capitalize;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Body text under topic/EQ: Circular 16px #424147 */
+    .unit-body-text {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    /* EQ list: disc, ms-24 */
+    .eq-list {
+      list-style: disc;
+      padding-left: 24px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--neutral-600);
+      line-height: 1.5;
+    }
+
+    .eq-list li {
+      margin-bottom: 0;
+    }
+
+    /* Progress bar block */
+    .progress-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Progress label: 14px, "X of Y" bold + rest regular */
+    .progress-label {
+      font-size: 14px;
+      color: var(--neutral-600);
+      line-height: 1.71;
+      margin-bottom: 4px;
+    }
+
+    .progress-label strong {
+      font-weight: 700;
+    }
+
+    /* Progress bar track: bg purple-50, rounded-8, h-8 */
+    .progress-track {
+      height: 8px;
+      background: var(--purple-50);
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    /* Progress fill: bg purple-600, rounded-tl-16 rounded-bl-16 */
+    .progress-fill {
+      height: 100%;
+      background: var(--purple-600);
+      border-radius: 16px 0 0 16px;
+    }
+
+    /* Right col: image, rounded-8, overflow-hidden, stretch */
+    .unit-image-col {
+      display: flex;
+      flex-direction: column;
+      border-radius: 8px;
+      overflow: hidden;
+      align-self: stretch;
+      min-height: 200px;
+    }
+
+    .unit-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      flex: 1;
+    }
+
+    /* Go to Unit button: Primary blue, large 48px */
+    .btn-go-unit {
+      display: inline-flex;
+      align-items: center;
+      background: var(--core-500);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 24px;
+      height: 48px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-go-unit:hover {
+      background: #0055d4;
+    }
+
+    /* ─── COURSE RESOURCES ─── */
+    .resources-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Resources header row */
+    .resources-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Download link: Circular 14px, purple-700 */
+    .download-all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-700);
+      text-decoration: none;
+      line-height: 1.14;
+    }
+
+    .download-all-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Files grid: 2-col, gap-16 */
+    .files-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    /* File card: white, rounded-24, p-24, flex items-center */
+    .file-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* PDF icon: 40x40 */
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .file-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* File info: flex-col, flex-1 */
+    .file-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    /* Filename: Noto Serif 16px, #1D1D1D */
+    .file-name {
+      font-family: 'Noto Serif', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* File size: Circular 14px, neutral-500 */
+    .file-size {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--neutral-500);
+      line-height: 1.71;
+    }
+
+    /* Preview action: flex gap-4, items-center */
+    .file-action {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Preview text: 14px, purple-700 */
+    .preview-label {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--purple-700);
+      line-height: 1.14;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .preview-label:hover {
+      text-decoration: underline;
+    }
+
+    /* External link icon: 24x24 */
+    .ext-link-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .ext-link-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header>
+  <div class="logo-group">
+    <a href="index.html"><img src="../Reference images/Logo.png" alt="Newsela Threads &amp; Themes" style="height:32px;display:block;" /></a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-link active">Courses</a>
+    <a href="assignments.html" class="nav-link">Assignments</a>
+    <a href="#" class="nav-link">Reporting</a>
+    <div class="nav-divider"></div>
+    <div style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+      <div class="avatar">DG</div>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5B5A61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════ PAGE LAYOUT ═══════════════════════════════════ -->
+<div class="page-layout">
+
+  <!-- ─── LEFT SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <!-- Thumbnail: aspect 268/80, rounded-16 -->
+      <div class="sidebar-thumb-wrap">
+        <img src="http://localhost:3845/assets/cd97f6d9ed3d5e578d4a7adf4885fddf3556cef6.png" alt="Course thumbnail" onerror="this.src='https://picsum.photos/seed/sidebar/268/80'" />
+      </div>
+
+      <!-- Course label: 16px bold -->
+      <div class="sidebar-course-label">ELA Core 8th Grade</div>
+
+      <ul class="nav-tree">
+        <li class="nav-unit">
+          <div class="nav-unit-header" onclick="toggleUnit(this)">
+            <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+            <span>Unit 1</span>
+          </div>
+          <ul class="nav-children" style="display:none">
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 1–10</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 1</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 2</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 3</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 4</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 5</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-unit">
+          <div class="nav-unit-header" onclick="toggleUnit(this)">
+            <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+            <span>Unit 2</span>
+          </div>
+          <ul class="nav-children" style="display:none">
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 1–10</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 1</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 2</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-unit">
+          <div class="nav-unit-header active-unit" onclick="toggleUnit(this)">
+            <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+            <span>Unit 3</span>
+          </div>
+          <ul class="nav-children">
+            <li class="nav-range-group">
+              <div class="nav-range range-open" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 1–10</span>
+              </div>
+              <ul class="nav-range-children">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 1</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 2</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 3</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 4</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 5</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 6</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 7</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 8</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 9</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 10</span></li>
+              </ul>
+            </li>
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 11–20</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 11</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 12</span></li>
+              </ul>
+            </li>
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 21–30</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 21</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 22</span></li>
+              </ul>
+            </li>
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 31–40</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 31</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 32</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-unit">
+          <div class="nav-unit-header" onclick="toggleUnit(this)">
+            <span class="nav-unit-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+            <span>Unit 4</span>
+          </div>
+          <ul class="nav-children" style="display:none">
+            <li class="nav-range-group">
+              <div class="nav-range" onclick="toggleRange(this)">
+                <span class="nav-range-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 4 10 8 6 12"/></svg></span>
+                <span>Lesson 1–10</span>
+              </div>
+              <ul class="nav-range-children" style="display:none">
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 1</span></li>
+                <li class="nav-lesson" onclick="goToLesson(this)"><span>Lesson 2</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </aside>
+
+  <!-- ─── MAIN CONTENT ─── -->
+  <!-- Body: p-32, flex-col gap-40 -->
+  <main class="main-content">
+
+    <!-- ── HERO IMAGE ── -->
+    <!-- rounded-16, aspect 1092/322 -->
+    <div class="hero-img-wrap">
+      <img src="https://picsum.photos/seed/classroom8th/1092/322" alt="Course hero" onerror="this.src='http://localhost:3845/assets/cd97f6d9ed3d5e578d4a7adf4885fddf3556cef6.png'" />
+    </div>
+
+    <!-- ── H1 ── -->
+    <!-- Noto Serif 40px capitalize -->
+    <h1 class="page-h1">ELA Core 8th grade</h1>
+
+    <!-- ── COURSE DESCRIPTION ── -->
+    <!-- flex-col gap-24 -->
+    <div class="course-description">
+
+      <!-- Overview: flex-col gap-8 -->
+      <div class="overview-block">
+        <p class="section-h3">Course Overview</p>
+        <div class="body-text">
+          <p>The Grade 8 Core ELA course is the final stage in the middle school progression (Self → Belonging → Systems), preparing students to analyze complex literature and historical narratives through the lens of power, justice, and societal systems.</p>
+          <br />
+          <p>This course challenges students to move beyond individual identity to confront the nature of oppression, cultural memory, and the role of storytelling in imagining a more just future. Students will engage with essential questions that span history and genre, asking: How do we use stories to remember, resist, and rebuild?</p>
+        </div>
+      </div>
+
+      <!-- Key Focus + Arcs of Inquiry: flex gap-24 -->
+      <div class="two-col-block">
+        <div>
+          <p class="section-h3">Key Focus</p>
+          <p class="body-text">Analyzing how authors use narrative forms (graphic memoir, dystopian fiction, verse novel) to expose systemic injustice, preserve cultural memory, and establish agency in the face of power.</p>
+        </div>
+        <div>
+          <p class="section-h3">Arcs of inquiry</p>
+          <p class="body-text">The Grade 8 Core ELA course uses arcs of inquiry to help students analyze literature and historical narratives through the lens of power, justice, and societal systems. Students move beyond individual identity to confront oppression, cultural memory, and the role of storytelling. Essential questions include: How do we use stories to remember, resist, and rebuild?</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── UNIT CARDS ── -->
+    <!-- flex-col gap-24 -->
+    <div class="units-list">
+
+      <!-- Unit 1 -->
+      <div class="unit-card">
+        <!-- Header: title + duration -->
+        <div class="unit-card-header">
+          <p class="unit-title">Unit 1: Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+          <p class="unit-duration">5 - 7 weeks</p>
+        </div>
+
+        <!-- Content: 2-col grid gap-32 -->
+        <div class="unit-content-grid">
+
+          <!-- Left: copy and bar -->
+          <div class="unit-copy-col">
+
+            <!-- Knowledge-Building Topic -->
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/89cfcb53c90d44fdeae8342194177ff0256123d8.svg" alt="🌱" onerror="this.style.display='none';this.parentElement.textContent='🌱';" />
+                </div>
+                <p class="unit-info-label">Knowledge-Building Topic</p>
+              </div>
+              <p class="unit-body-text">Belonging and Social Constructs - Youth Identity, Class, and Peer Belonging in America</p>
+            </div>
+
+            <!-- Essential Questions -->
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/57db6054a9b78f82a851b21ef482483bad37d2db.svg" alt="❓" onerror="this.style.display='none';this.parentElement.textContent='❓';" />
+                </div>
+                <p class="unit-info-label">Essential Questions</p>
+              </div>
+              <ul class="eq-list">
+                <li><span>What makes a friendship last through change?</span></li>
+                <li><span>SEL: relationship skills, empathy, resilience.</span></li>
+                <li><span>Why do people react to the same situation in different ways?<br>SEL: perspective-taking, identity, community awareness.</span></li>
+              </ul>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-block">
+              <p class="progress-label"><strong>50 of 50</strong> completed lessons</p>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:100%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: image -->
+          <div class="unit-image-col">
+            <img src="http://localhost:3845/assets/e679bd806143b277da32ef3b547a1d6de5f81a03.png" alt="Unit 1 illustration" onerror="this.src='https://picsum.photos/seed/unit1ill/520/400'" />
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div>
+          <a href="unit.html" class="btn-go-unit">Go to Unit 1</a>
+        </div>
+      </div>
+
+      <!-- Unit 2 -->
+      <div class="unit-card">
+        <div class="unit-card-header">
+          <p class="unit-title">Unit 2: Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+          <p class="unit-duration">5 - 7 weeks</p>
+        </div>
+        <div class="unit-content-grid">
+          <div class="unit-copy-col">
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/89cfcb53c90d44fdeae8342194177ff0256123d8.svg" alt="🌱" onerror="this.style.display='none';this.parentElement.textContent='🌱';" />
+                </div>
+                <p class="unit-info-label">Knowledge-Building Topic</p>
+              </div>
+              <p class="unit-body-text">Belonging and Social Constructs - Youth Identity, Class, and Peer Belonging in America</p>
+            </div>
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/57db6054a9b78f82a851b21ef482483bad37d2db.svg" alt="❓" onerror="this.style.display='none';this.parentElement.textContent='❓';" />
+                </div>
+                <p class="unit-info-label">Essential Questions</p>
+              </div>
+              <ul class="eq-list">
+                <li><span>How does collective memory influence a community's sense of identity?</span></li>
+                <li><span>SEL: relationship skills, empathy, resilience.</span></li>
+                <li><span>In what ways do institutions perpetuate or challenge inequality?<br>SEL: perspective-taking, identity, community awareness.</span></li>
+              </ul>
+            </div>
+            <div class="progress-block">
+              <p class="progress-label"><strong>50 of 50</strong> completed lessons</p>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:100%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="unit-image-col">
+            <img src="http://localhost:3845/assets/e679bd806143b277da32ef3b547a1d6de5f81a03.png" alt="Unit 2 illustration" onerror="this.src='https://picsum.photos/seed/unit2ill/520/400'" />
+          </div>
+        </div>
+        <div>
+          <a href="unit.html" class="btn-go-unit">Go to Unit 2</a>
+        </div>
+      </div>
+
+      <!-- Unit 3 -->
+      <div class="unit-card">
+        <div class="unit-card-header">
+          <p class="unit-title">Unit 3: Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+          <p class="unit-duration">5 - 7 weeks</p>
+        </div>
+        <div class="unit-content-grid">
+          <div class="unit-copy-col">
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/89cfcb53c90d44fdeae8342194177ff0256123d8.svg" alt="🌱" onerror="this.style.display='none';this.parentElement.textContent='🌱';" />
+                </div>
+                <p class="unit-info-label">Knowledge-Building Topic</p>
+              </div>
+              <p class="unit-body-text">Belonging and Social Constructs - Youth Identity, Class, and Peer Belonging in America</p>
+            </div>
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/57db6054a9b78f82a851b21ef482483bad37d2db.svg" alt="❓" onerror="this.style.display='none';this.parentElement.textContent='❓';" />
+                </div>
+                <p class="unit-info-label">Essential Questions</p>
+              </div>
+              <ul class="eq-list">
+                <li><span>How can language be used as a tool of power or resistance?</span></li>
+                <li><span>SEL: relationship skills, empathy, resilience.</span></li>
+                <li><span>What role does storytelling play in preserving cultural identity?<br>SEL: perspective-taking, identity, community awareness.</span></li>
+              </ul>
+            </div>
+            <div class="progress-block">
+              <p class="progress-label"><strong>25 of 50</strong> completed lessons</p>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:50%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="unit-image-col">
+            <img src="http://localhost:3845/assets/e679bd806143b277da32ef3b547a1d6de5f81a03.png" alt="Unit 3 illustration" onerror="this.src='https://picsum.photos/seed/unit3ill/520/400'" />
+          </div>
+        </div>
+        <div>
+          <a href="unit.html" class="btn-go-unit">Go to Unit 3</a>
+        </div>
+      </div>
+
+      <!-- Unit 4 -->
+      <div class="unit-card">
+        <div class="unit-card-header">
+          <p class="unit-title">Unit 4: Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+          <p class="unit-duration">5 - 7 weeks</p>
+        </div>
+        <div class="unit-content-grid">
+          <div class="unit-copy-col">
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/89cfcb53c90d44fdeae8342194177ff0256123d8.svg" alt="🌱" onerror="this.style.display='none';this.parentElement.textContent='🌱';" />
+                </div>
+                <p class="unit-info-label">Knowledge-Building Topic</p>
+              </div>
+              <p class="unit-body-text">Belonging and Social Constructs - Youth Identity, Class, and Peer Belonging in America</p>
+            </div>
+            <div class="unit-info-block">
+              <div class="unit-info-header">
+                <div class="illus-icon">
+                  <img src="http://localhost:3845/assets/57db6054a9b78f82a851b21ef482483bad37d2db.svg" alt="❓" onerror="this.style.display='none';this.parentElement.textContent='❓';" />
+                </div>
+                <p class="unit-info-label">Essential Questions</p>
+              </div>
+              <ul class="eq-list">
+                <li><span>How do individuals and communities create systemic change?</span></li>
+                <li><span>SEL: relationship skills, empathy, resilience.</span></li>
+                <li><span>What is the role of argument and evidence in civic discourse?<br>SEL: perspective-taking, identity, community awareness.</span></li>
+              </ul>
+            </div>
+            <div class="progress-block">
+              <p class="progress-label"><strong>0 of 50</strong> completed lessons</p>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:0%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="unit-image-col">
+            <img src="http://localhost:3845/assets/e679bd806143b277da32ef3b547a1d6de5f81a03.png" alt="Unit 4 illustration" onerror="this.src='https://picsum.photos/seed/unit4ill/520/400'" />
+          </div>
+        </div>
+        <div>
+          <a href="unit.html" class="btn-go-unit">Go to Unit 4</a>
+        </div>
+      </div>
+
+    </div><!-- /units-list -->
+
+    <!-- ── COURSE RESOURCES ── -->
+    <!-- flex-col gap-24 -->
+    <div class="resources-section">
+
+      <!-- Header row -->
+      <div class="resources-header">
+        <p class="section-h3">Course Resources</p>
+        <a href="#" class="download-all-link">
+          Download all Resources
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2v9M5 8l3 3 3-3M2 13h12" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Files grid: 2-col gap-16 -->
+      <div class="files-grid">
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Course Syllabus &amp; Overview</span>
+            <span class="file-size">1.2 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">ELA Standards Alignment Guide</span>
+            <span class="file-size">0.9 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Teacher Pacing Guide — Full Year</span>
+            <span class="file-size">2.1 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Assessment &amp; Rubric Packet</span>
+            <span class="file-size">1.7 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Close Reading Protocols &amp; Strategies</span>
+            <span class="file-size">0.8 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Academic Vocabulary Word Wall Cards</span>
+            <span class="file-size">1.4 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Discussion Norms &amp; Socratic Seminar Guide</span>
+            <span class="file-size">0.6 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="file-card">
+          <div class="file-icon">
+            <img src="../Reference images/pdf-icon.png" alt="PDF" />
+          </div>
+          <div class="file-info">
+            <span class="file-name">Family &amp; Community Engagement Toolkit</span>
+            <span class="file-size">1.1 MB</span>
+          </div>
+          <div class="file-action">
+            <a href="#" class="preview-label">Preview</a>
+            <a href="#" class="ext-link-icon" title="Open">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="#54005C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /files-grid -->
+    </div><!-- /resources-section -->
+
+  </main>
+</div><!-- /page-layout -->
+
+<script>
+  function toggleUnit(header) {
+    const unit = header.closest('.nav-unit');
+    const children = unit.querySelector('.nav-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) header.classList.add('active-unit');
+    else header.classList.remove('active-unit');
+  }
+
+  function toggleRange(rangeRow) {
+    const group = rangeRow.closest('.nav-range-group');
+    const children = group.querySelector('.nav-range-children');
+    const isOpen = children.style.display !== 'none';
+    children.style.display = isOpen ? 'none' : '';
+    if (!isOpen) rangeRow.classList.add('range-open');
+    else rangeRow.classList.remove('range-open');
+  }
+
+  function goToLesson(lessonEl) {
+    window.location.href = 'lesson-guide.html';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignments & Presentations — Newsela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #faf9f5;
+      color: #1D1D1D;
+      font-size: 14px;
+      min-width: 1440px;
+    }
+
+    /* ───────────── HEADER ───────────── */
+    header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E1E3E5;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #5B5A61;
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: #1D1D1D; }
+
+    nav a.active {
+      color: #1D1D1D;
+      font-weight: 600;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: #E1E3E5;
+      margin: 0 8px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0A6EFA;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ───────────── PAGE WRAPPER ───────────── */
+    .page {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 32px 60px;
+    }
+
+    /* ───────────── BREADCRUMB ───────────── */
+    .breadcrumb {
+      padding-top: 32px;
+      padding-bottom: 0;
+      margin-bottom: 24px;
+      font-size: 12px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #5B5A61;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 16px;
+    }
+
+    .breadcrumb a {
+      color: #5B5A61;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb-sep { color: #A8AAB0; }
+
+    /* ───────────── PAGE TITLE ───────────── */
+    h1.page-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 48px;
+      color: #1D1D1D;
+      margin-bottom: 32px;
+    }
+
+    /* ───────────── FILTER BAR ───────────── */
+    .filter-bar {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .filter-group.filter-classes { width: 480px; }
+    .filter-group.filter-status,
+    .filter-group.filter-type,
+    .filter-group.filter-grades,
+    .filter-group.filter-date { width: 208px; }
+
+    .filter-label {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #5B5A61;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      line-height: 16px;
+    }
+
+    .filter-select {
+      appearance: none;
+      background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2377767A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+      border: 1px solid #E1E3E5;
+      border-radius: 8px;
+      padding: 10px 36px 10px 14px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #1D1D1D;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+      height: 48px;
+    }
+
+    .filter-select:hover { border-color: #A8AAB0; }
+    .filter-select:focus { border-color: #0A6EFA; box-shadow: 0 0 0 3px rgba(10,110,250,0.1); }
+
+    /* ───────────── UNIT CARD ───────────── */
+    .unit-card {
+      background: #FFFFFF;
+      border: 1px solid #E1E3E5;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .unit-header {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 0;
+      border-bottom: 1px solid #E1E3E5;
+      background: #FFFFFF;
+      min-height: 126px;
+    }
+
+    .unit-header-left {
+      flex: 1;
+      min-width: 0;
+      padding: 28px 24px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .unit-grade {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #5B5A61;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      line-height: 24px;
+    }
+
+    .unit-title {
+      font-family: 'Noto Serif', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: #1D1D1D;
+      line-height: 1.35;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #dd3636;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 4px 8px 4px 4px;
+      border-radius: 12px;
+      align-self: flex-start;
+    }
+
+    .unit-thumb {
+      width: 226px;
+      height: 126px;
+      border-radius: 0;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-left: 1px solid #E1E3E5;
+    }
+
+    /* ───────────── LESSON LIST ───────────── */
+    .lesson-list {
+      padding-top: 16px;
+    }
+
+    .lesson-row {
+      display: flex;
+      align-items: center;
+      padding: 43px 0 43px 24px;
+      border-bottom: 1px solid #E1E3E5;
+      gap: 0;
+      transition: background 0.1s;
+      min-height: 142px;
+    }
+
+    .lesson-row:hover { background: inherit; }
+
+    .lesson-num {
+      display: none;
+    }
+
+    .lesson-info {
+      width: 849px;
+      flex-shrink: 0;
+      min-width: 0;
+      margin-right: 24px;
+    }
+
+    .lesson-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .lesson-title {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1D1D1D;
+      line-height: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 4px;
+      letter-spacing: 0.6px;
+      line-height: 1.4;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .pill-reading          { background: #FFDCF5; color: #7D0145; }
+    .pill-discussion       { background: #CCE1FF; color: #082C88; }
+    .pill-spark            { background: #B9F9EA; color: #085E4A; }
+    .pill-language-analysis { background: #F5DEC8; color: #7C4A1E; }
+
+    .lesson-meta {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #5B5A61;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      line-height: 1.33;
+    }
+
+    .lesson-meta-sep { color: #A8AAB0; margin: 0 4px; }
+
+    .lesson-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      width: 283px;
+      padding-left: 16px;
+      margin-right: 24px;
+    }
+
+    .link-view-guide {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #0A6EFA;
+      text-decoration: none;
+      white-space: nowrap;
+      width: 97px;
+      text-align: center;
+    }
+
+    .link-view-guide:hover { text-decoration: underline; }
+
+    .btn-review {
+      background: #0A6EFA;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      transition: background 0.15s, box-shadow 0.15s;
+      line-height: 1;
+      height: 48px;
+      width: 138px;
+    }
+
+    .btn-review:hover {
+      background: #0F3FDE;
+      box-shadow: 0 2px 8px rgba(10,110,250,0.3);
+    }
+
+    /* Live / teacher-paced lesson row */
+    .lesson-row.is-live {
+      background: inherit;
+      padding-left: 24px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      align-items: flex-start;
+      min-height: 144px;
+    }
+
+    .lesson-row.is-live:hover { background: inherit; }
+
+    .lesson-row.is-live .lesson-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lesson-row.is-live .lesson-actions {
+      padding-top: 40px;
+    }
+
+    .lesson-row.is-live .row-divider {
+      margin-top: 40px;
+      align-self: flex-start;
+    }
+
+    .lesson-row.is-live .submitted-count {
+      padding-top: 40px;
+    }
+
+    .live-row-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFE8D4;
+      color: #B34B00;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      height: 24px;
+    }
+
+    .live-row-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #E8874A;
+      animation: pulse 1.8s infinite;
+      flex-shrink: 0;
+    }
+
+    .btn-start {
+      background: #0A6EFA;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      transition: background 0.15s, box-shadow 0.15s;
+      line-height: 1;
+      height: 48px;
+      width: 138px;
+    }
+
+    .btn-start:hover {
+      background: #0F3FDE;
+      box-shadow: 0 2px 8px rgba(10,110,250,0.3);
+    }
+
+    /* vertical separator between CTAs and student data */
+    .row-divider {
+      width: 1px;
+      height: 94px;
+      background: #E1E3E5;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    .submitted-count {
+      text-align: center;
+      flex-shrink: 0;
+      width: 124px;
+      margin-left: 24px;
+      margin-right: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .submitted-num {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #1D1D1D;
+      line-height: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .submitted-num strong {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 24px;
+      color: #1D1D1D;
+    }
+
+    .submitted-num .of-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5B5A61;
+      margin: 0 3px;
+    }
+
+    .submitted-num .total-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1D1D1D;
+    }
+
+    .submitted-label {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #5B5A61;
+      margin-top: 16px;
+      line-height: 16px;
+      white-space: nowrap;
+    }
+
+    /* ───────────── SHOW ALL LINK ───────────── */
+    .unit-footer {
+      padding: 16px 24px;
+      background: #FFFFFF;
+      border-top: 1px solid #E1E3E5;
+    }
+
+    .show-all-link {
+      font-family: 'Circular', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0A6EFA;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+    }
+
+    .show-all-link:hover { text-decoration: underline; }
+
+    .show-all-link svg {
+      width: 14px;
+      height: 14px;
+      stroke: #0A6EFA;
+      fill: none;
+    }
+
+    /* ───────────── FOOTER ───────────── */
+    footer {
+      background: #FFFFFF;
+      border-top: 1px solid #E1E3E5;
+      padding: 0 32px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      font-size: 12px;
+      color: #5B5A61;
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; color: #424147; }
+
+    .footer-sep {
+      color: #E1E3E5;
+      font-size: 12px;
+    }
+
+    footer .copyright {
+      font-size: 12px;
+      color: #8D8D96;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header>
+    <a href="index.html"><img src="../Reference images/Logo.png" alt="Newsela Threads & Themes" style="height: 32px; display: block;" /></a>
+
+    <nav>
+      <a href="index.html">Courses</a>
+      <a href="assignments.html" class="active">Assignments</a>
+      <a href="#">Reporting</a>
+      <div class="nav-divider"></div>
+      <div style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+        <div class="avatar">GG</div>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#5B5A61" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ═══════════════ PAGE CONTENT ═══════════════ -->
+  <div class="page">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Assignments</span>
+    </div>
+
+    <!-- Page title -->
+    <h1 class="page-title">Assignments &amp; Presentations</h1>
+
+    <!-- Filter bar with labels -->
+    <div class="filter-bar">
+      <div class="filter-group filter-classes">
+        <label class="filter-label">Classes</label>
+        <select class="filter-select">
+          <option>All classes</option>
+          <option>Staying Active 201</option>
+        </select>
+      </div>
+      <div class="filter-group filter-status">
+        <label class="filter-label">Status</label>
+        <select class="filter-select">
+          <option>All</option>
+          <option>Active</option>
+          <option>Completed</option>
+        </select>
+      </div>
+      <div class="filter-group filter-type">
+        <label class="filter-label">Type</label>
+        <select class="filter-select">
+          <option>All</option>
+          <option>Reading</option>
+          <option>Discussion</option>
+          <option>Spark</option>
+          <option>Language Analysis</option>
+        </select>
+      </div>
+      <div class="filter-group filter-grades">
+        <label class="filter-label">Grades</label>
+        <select class="filter-select">
+          <option>All</option>
+          <option>6th Grade</option>
+          <option>7th Grade</option>
+          <option>8th Grade</option>
+        </select>
+      </div>
+      <div class="filter-group filter-date">
+        <label class="filter-label">Date created</label>
+        <select class="filter-select">
+          <option>Last 30 days</option>
+          <option>Last 7 days</option>
+          <option>Last 90 days</option>
+          <option>All time</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ─────────────── UNIT 1 ─────────────── -->
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <div class="unit-grade">ELA Core 6th grade</div>
+          <div class="unit-title">Unit 1: Belonging and Identity in Personal Development</div>
+        </div>
+        <img
+          class="unit-thumb"
+          src="https://picsum.photos/seed/unit1/226/126"
+          alt="Unit 1 thumbnail"
+        />
+      </div>
+
+      <div class="lesson-list">
+
+        <!-- Lesson 1 -->
+        <div class="lesson-row">
+          <span class="lesson-num">1</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">The Role of Service In Personal Development (Ch. 14)</span>
+              <span class="pill pill-reading">Reading</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>5</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-row">
+          <span class="lesson-num">2</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Building Connections Through Community (Ch. 13)</span>
+              <span class="pill pill-discussion">Discussion</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>5</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-row">
+          <span class="lesson-num">3</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Understanding Mysticism In Society (Ch. 18)</span>
+              <span class="pill pill-spark">Spark</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>5</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 4 -->
+        <div class="lesson-row">
+          <span class="lesson-num">4</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">The Role of Service In Community Growth (Ch. 14)</span>
+              <span class="pill pill-language-analysis">Language Analysis</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>5</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="unit-footer">
+        <a class="show-all-link" href="#">
+          Show all unit lessons
+          <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h8M8 4l3 3-3 3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────── UNIT 2 ─────────────── -->
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <div class="unit-grade">ELA Core 6th grade</div>
+          <div class="unit-title">Unit 2: Power, Justice, and Societal Systems</div>
+        </div>
+        <img
+          class="unit-thumb"
+          src="https://picsum.photos/seed/unit2/226/126"
+          alt="Unit 2 thumbnail"
+        />
+      </div>
+
+      <div class="lesson-list">
+
+        <!-- Lesson 1 — LIVE (teacher-paced) -->
+        <div class="lesson-row is-live">
+          <span class="lesson-num">1</span>
+          <div class="lesson-info">
+            <div class="live-badge" style="margin-bottom:12px;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M5 3.5L13 8L5 12.5V3.5Z"/></svg>
+              Live lesson
+            </div>
+            <div class="lesson-title-row">
+              <span class="lesson-title">Community and Social Justice (Ch. 15)</span>
+              <span class="pill pill-reading">Reading</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-start" href="https://app.formative.com/formatives/698de14b0c84482cf4f17cb5/launch" target="_blank">Start Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>7</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-row">
+          <span class="lesson-num">2</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Power and Privilege in Modern Society (Ch. 16)</span>
+              <span class="pill pill-discussion">Discussion</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>3</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-row">
+          <span class="lesson-num">3</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Economic Inequality and Systems (Ch. 10)</span>
+              <span class="pill pill-spark">Spark</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>8</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 4 -->
+        <div class="lesson-row">
+          <span class="lesson-num">4</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Political Structures and Their Impact (Ch. 11)</span>
+              <span class="pill pill-language-analysis">Language Analysis</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>6</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 5 -->
+        <div class="lesson-row">
+          <span class="lesson-num">5</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Cultural Identity Across Borders (Ch. 12)</span>
+              <span class="pill pill-reading">Reading</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>4</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="unit-footer">
+        <a class="show-all-link" href="#">
+          Show all unit lessons
+          <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h8M8 4l3 3-3 3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- ─────────────── UNIT 3 ─────────────── -->
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <div class="unit-grade">ELA Core 8th grade</div>
+          <div class="unit-title">Unit 3: Systems, Change, and Environmental Justice</div>
+        </div>
+        <img
+          class="unit-thumb"
+          src="https://picsum.photos/seed/unit3/226/126"
+          alt="Unit 3 thumbnail"
+        />
+      </div>
+
+      <div class="lesson-list">
+
+        <!-- Lesson 1 -->
+        <div class="lesson-row">
+          <span class="lesson-num">1</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Systems Thinking and Social Change (Ch. 4)</span>
+              <span class="pill pill-discussion">Discussion</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>9</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-row">
+          <span class="lesson-num">2</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Environmental Justice and Community Action (Ch. 5)</span>
+              <span class="pill pill-reading">Reading</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>2</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-row">
+          <span class="lesson-num">3</span>
+          <div class="lesson-info">
+            <div class="lesson-title-row">
+              <span class="lesson-title">Technology, Society, and the Future (Ch. 6)</span>
+              <span class="pill pill-language-analysis">Language Analysis</span>
+            </div>
+            <div class="lesson-meta">
+              Assigned Jan 31, 2026
+              <span class="lesson-meta-sep">·</span>
+              Class: Staying Active 201
+            </div>
+          </div>
+          <div class="lesson-actions">
+            <a class="link-view-guide" href="lesson-guide.html">View guide</a>
+            <a class="btn-review" href="https://app.formative.com/formatives/698de12b20a26915229c649c/results" target="_blank">Review Lesson</a>
+          </div>
+          <div class="row-divider"></div>
+          <div class="submitted-count">
+            <div class="submitted-num"><strong>11</strong><span class="of-text">of</span><span class="total-text">11</span></div>
+            <div class="submitted-label">Students submitted</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="unit-footer">
+        <a class="show-all-link" href="#">
+          Show all unit lessons
+          <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h8M8 4l3 3-3 3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <a href="#">Terms of use</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Privacy policy</a>
+    <span class="footer-sep">·</span>
+    <a href="#">CA Privacy policy</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Accessibility</a>
+    <span class="footer-sep">·</span>
+    <a href="#">Navigation Guide</a>
+    <span class="footer-sep">·</span>
+    <span class="copyright">© 2024 Newsela Inc.</span>
+  </footer>
+
+</body>
+</html>
